@@ -11,6 +11,6 @@ Block::Block(ofRectangle rect) {
     rect = rect;
 }
 
-Block::getRect() {
+ofRectangle Block::getRect() {
     return rect;
 }
