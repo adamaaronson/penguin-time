@@ -6,45 +6,40 @@
 //
 
 #include "player.hpp"
-#include <ofMain.h>
 
-Player::Player(ofRectangle rect) {
-    rect = rect;
+Player::Player(int x, int y, int width, int height, ofColor color_) {
+    rect = ofRectangle(x, y, width, height);
+    color = color_;
 }
 
-Player::Player(ofRectangle rect, int walkVel, int jumpVel) {
-    rect = rect;
-    walkVel = walkVel;
-    jumpVel = jumpVel;
+Player::Player(int x, int y, int width, int height, int walkVel_, int jumpVel_, ofColor color_) {
+    rect = ofRectangle(x, y, width, height);
+    walkVel = walkVel_;
+    jumpVel = jumpVel_;
+    color = color_;
 }
 
 ofRectangle Player::getRect() const {
     return rect;
 }
 
-int Player::getXVel() const {
-    return xVel;
+ofColor Player::getColor() const {
+    return color;
 }
 
-int Player::getYVel() const {
-    return yVel;
+void Player::setColor(ofColor color_) {
+    color = color_;
 }
 
-bool Player::isGrounded() const {
-    return grounded;
-}
-
-int Player::getJumpVel() const {
-    return jumpVel;
-}
-
-int Player::getWalkVel() const {
-    return walkVel;
+void Player::setup() {
+    
 }
 
 void Player::update() {
     rect.translate(xVel, yVel);
-    if (grounded) {
-        
-    }
+}
+
+void Player::draw() {
+    ofSetColor(color);
+    ofDrawRectangle(rect);
 }

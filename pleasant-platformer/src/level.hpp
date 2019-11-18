@@ -10,6 +10,8 @@
 
 #include <stdio.h>
 #include <ofMain.h>
+#include "player.hpp"
+#include "block.hpp"
 
 class Level {
 private:

@@ -1,8 +1,13 @@
 #pragma once
 
 #include "ofMain.h"
+#include "player.hpp"
+#include "block.hpp"
+#include "level.hpp"
 
-class ofApp : public ofBaseApp{
+class ofApp : public ofBaseApp {
+    Player player;
+    std::vector<Block> blocks;
 
     public:
         void setup();
@@ -20,5 +25,4 @@ class ofApp : public ofBaseApp{
         void windowResized(int w, int h);
         void dragEvent(ofDragInfo dragInfo);
         void gotMessage(ofMessage msg);
-        
 };

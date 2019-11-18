@@ -203,7 +203,7 @@
 		9EFCAC45A7EE73A2C07AC87E /* b2ChainAndPolygonContact.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = b2ChainAndPolygonContact.cpp; path = ../../../../../Downloads/of_v0.10.1_osx_release/addons/ofxBox2d/libs/Box2D/Dynamics/Contacts/b2ChainAndPolygonContact.cpp; sourceTree = SOURCE_ROOT; };
 		A32F390A238317A100492292 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		A32F390C238317D800492292 /* ofApp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofApp.cpp; sourceTree = "<group>"; };
-		A32F390D238317D800492292 /* ofApp.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ofApp.hpp; sourceTree = "<group>"; };
+		A32F390D238317D800492292 /* ofApp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofApp.h; sourceTree = "<group>"; };
 		A5CA0AB66E7BC19BB298A747 /* ofxBox2dEdge.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ofxBox2dEdge.cpp; path = ../../../../../Downloads/of_v0.10.1_osx_release/addons/ofxBox2d/src/ofxBox2dEdge.cpp; sourceTree = SOURCE_ROOT; };
 		AB0EDC7EA2955605D5799432 /* ofxBox2dRender.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxBox2dRender.h; path = ../../../../../Downloads/of_v0.10.1_osx_release/addons/ofxBox2d/src/ofxBox2dRender.h; sourceTree = SOURCE_ROOT; };
 		AD5AF6AE99D83D80671A26AD /* b2ChainShape.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = b2ChainShape.cpp; path = ../../../../../Downloads/of_v0.10.1_osx_release/addons/ofxBox2d/libs/Box2D/Collision/Shapes/b2ChainShape.cpp; sourceTree = SOURCE_ROOT; };
@@ -1015,15 +1015,15 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				BCDE8C9BEBCF137ABA15868F /* player.cpp */,
-				C42981E365C09748A151A803 /* level.cpp */,
-				6F9E073E6D03C78F3528C896 /* block.cpp */,
 				46DCEE51FF9AA52348AF0C0B /* level.hpp */,
+				C42981E365C09748A151A803 /* level.cpp */,
 				02CCF4101C890461A385AD81 /* block.hpp */,
+				6F9E073E6D03C78F3528C896 /* block.cpp */,
 				FE3A3345BA1EF448649CE3C1 /* player.hpp */,
+				BCDE8C9BEBCF137ABA15868F /* player.cpp */,
 				A32F390A238317A100492292 /* main.cpp */,
 				A32F390C238317D800492292 /* ofApp.cpp */,
-				A32F390D238317D800492292 /* ofApp.hpp */,
+				A32F390D238317D800492292 /* ofApp.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -1300,6 +1300,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E4EB6923138AFD0F00A09F29 /* Project.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -1453,6 +1454,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E4EB6923138AFD0F00A09F29 /* Project.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -1501,6 +1503,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E4EB6923138AFD0F00A09F29 /* Project.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";

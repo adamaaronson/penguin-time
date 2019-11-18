@@ -14,11 +14,18 @@
 class Block {
 private:
     ofRectangle rect;
+    ofColor color;
     
 public:
-    Block(ofRectangle rect);
-    ofRectangle getRect();
+    Block() {};
+    Block(int x, int y, int width, int height, ofColor color_);
     
+    void draw();
+    
+    ofRectangle getRect();
+    ofColor getColor();
+    
+    void setColor(ofColor color_);
 };
 
 #endif /* block_hpp */
