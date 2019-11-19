@@ -6,3 +6,8 @@
 //
 
 #include "level.hpp"
+
+Level::Level(Player &player_, std::vector<Block> blocks_) {
+    player = player_;
+    blocks = blocks_;
+}

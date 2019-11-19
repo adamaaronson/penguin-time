@@ -1015,15 +1015,15 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				A32F390A238317A100492292 /* main.cpp */,
+				A32F390D238317D800492292 /* ofApp.h */,
+				A32F390C238317D800492292 /* ofApp.cpp */,
 				46DCEE51FF9AA52348AF0C0B /* level.hpp */,
 				C42981E365C09748A151A803 /* level.cpp */,
 				02CCF4101C890461A385AD81 /* block.hpp */,
 				6F9E073E6D03C78F3528C896 /* block.cpp */,
 				FE3A3345BA1EF448649CE3C1 /* player.hpp */,
 				BCDE8C9BEBCF137ABA15868F /* player.cpp */,
-				A32F390A238317A100492292 /* main.cpp */,
-				A32F390C238317D800492292 /* ofApp.cpp */,
-				A32F390D238317D800492292 /* ofApp.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;

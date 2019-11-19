@@ -1,13 +1,18 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ofxBox2d.h"
 #include "player.hpp"
 #include "block.hpp"
 #include "level.hpp"
 
 class ofApp : public ofBaseApp {
     Player player;
-    std::vector<Block> blocks;
+    std::vector<Level> levels;
+    int currentLevel = 0;
+    
+    int width = ofGetWidth();
+    int height = ofGetHeight();
 
     public:
         void setup();

@@ -7,15 +7,8 @@
 
 #include "player.hpp"
 
-Player::Player(int x, int y, int width, int height, ofColor color_) {
+Player::Player(double x, double y, double width, double height, ofColor color_) {
     rect = ofRectangle(x, y, width, height);
-    color = color_;
-}
-
-Player::Player(int x, int y, int width, int height, int walkVel_, int jumpVel_, ofColor color_) {
-    rect = ofRectangle(x, y, width, height);
-    walkVel = walkVel_;
-    jumpVel = jumpVel_;
     color = color_;
 }
 
@@ -37,9 +30,56 @@ void Player::setup() {
 
 void Player::update() {
     rect.translate(xVel, yVel);
+    yVel += gravity;
+    
 }
 
 void Player::draw() {
     ofSetColor(color);
     ofDrawRectangle(rect);
+}
+
+Collision Player::getCollision(Block block) {
+    ofRectangle bRect = block.getRect();
+    double xDist = (rect.x + rect.width / 2) - (bRect.x + bRect.width / 2);
+    double yDist = (rect.y + rect.height / 2) - (bRect.y + bRect.height / 2);
+    
+    double halfWidths = rect.width / 2 + bRect.width / 2;
+    double halfHeights = rect.height / 2 + bRect.height / 2;
+    Collision col = Collision::NONE;
+    
+    double xShift = 0;
+    double yShift = 0;
+    
+    if (std::abs(xDist) < halfWidths && std::abs(yDist) < halfHeights) {
+        double xOverlap = halfWidths - std::abs(xDist);
+        double yOverlap = halfHeights - std::abs(yDist);
+        
+        if (xOverlap > yOverlap) {
+            if (yDist > 0) {
+                col = Collision::TOP;
+                yShift = yOverlap;
+                if (yVel < 0) {
+                    yVel = 0;
+                }
+            } else {
+                col = Collision::BOTTOM;
+                yShift = -yOverlap;
+                grounded = true;
+                if (yVel > 0) {
+                    yVel = 0;
+                }
+            }
+        } else {
+            if (xDist > 0) {
+                col = Collision::LEFT;
+                xShift = xOverlap;
+            } else {
+                col = Collision::RIGHT;
+                xShift = -xOverlap;
+            }
+        }
+    }
+    rect.translate(xShift, yShift);
+    return col;
 }

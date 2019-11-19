@@ -18,12 +18,12 @@ private:
     
 public:
     Block() {};
-    Block(int x, int y, int width, int height, ofColor color_);
+    Block(double x, double y, double width, double height, ofColor color_);
     
     void draw();
     
-    ofRectangle getRect();
-    ofColor getColor();
+    ofRectangle getRect() const;
+    ofColor getColor() const;
     
     void setColor(ofColor color_);
 };

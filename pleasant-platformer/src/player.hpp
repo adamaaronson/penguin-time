@@ -10,19 +10,29 @@
 
 #include <stdio.h>
 #include <ofMain.h>
+#include "block.hpp"
 
-#define DEFAULT_WALK_VEL 5
-#define DEFAULT_JUMP_VEL 5
+#define DEFAULT_WALK_VEL 5.0
+#define DEFAULT_JUMP_VEL 8.0
+#define DEFAULT_GRAVITY 0.2
+
+enum Collision {
+    TOP,
+    RIGHT,
+    BOTTOM,
+    LEFT,
+    NONE
+};
 
 class Player {
+    
 private:
     ofRectangle rect;
     ofColor color;
 
 public:
     Player() {};
-    Player(int x, int y, int width, int height, ofColor color_);
-    Player(int x, int y, int width, int height, int walkVel_, int jumpVel_, ofColor color_);
+    Player(double x, double y, double width, double height, ofColor color_);
     
     void setup();
     void update();
@@ -30,18 +40,20 @@ public:
     
     ofRectangle getRect() const;
     ofColor getColor() const;
-    
     void setColor(ofColor color_);
     
-    int xVel = 0;
-    int yVel = 0;
+    double xVel = 0;
+    double yVel = 0;
     
     bool movingLeft = false;
     bool movingRight = false;
-    bool grounded = false;
+    bool grounded = true;
     
-    int walkVel = DEFAULT_WALK_VEL;
-    int jumpVel = DEFAULT_JUMP_VEL;
+    double walkVel = DEFAULT_WALK_VEL;
+    double jumpVel = DEFAULT_JUMP_VEL;
+    double gravity = DEFAULT_GRAVITY;
+    
+    Collision getCollision(Block block);
 };
 
 #endif /* player_hpp */

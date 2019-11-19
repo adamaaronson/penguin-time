@@ -1,48 +1,68 @@
 #include "ofApp.h"
 
+#define LEFT OF_KEY_LEFT
+#define RIGHT OF_KEY_RIGHT
+#define JUMP OF_KEY_UP
+
+#define PLAYER_COLOR ofColor::steelBlue
+#define BLOCK_COLOR ofColor::black
+
 //--------------------------------------------------------------
 void ofApp::setup(){
     ofSetBackgroundColor(ofColor(0x333333));
-    player = Player(ofGetWidth()/2 - 25, ofGetHeight() - 150, 50, 100, ofColor::steelBlue);
     
-    Block bottom = Block(0, ofGetHeight() - 50, ofGetWidth(), 50, ofColor::white);
-    blocks.push_back(bottom);
+    player = Player(width/2 - 25, height - 140, 90, 50, PLAYER_COLOR);
+    std::vector<Block> blocks;
+    blocks.emplace_back(0, height - 50, width, 50, BLOCK_COLOR);
+    blocks.emplace_back(width/3, height - 200, 50, 50, BLOCK_COLOR);
+    blocks.emplace_back(2*width/3, height - 100, 50, 50, BLOCK_COLOR);
+
+    
+    levels.emplace_back(player, blocks);
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
     player.update();
+    for (Block b : levels[currentLevel].blocks) {
+        player.getCollision(b);
+    }
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
     player.draw();
-    for (Block b : blocks) {
+    for (Block b : levels[currentLevel].blocks) {
         b.draw();
     }
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-    if (key == OF_KEY_LEFT) {
+    if (key == LEFT) {
         player.movingLeft = true;
         player.xVel = -player.walkVel;
-    } else if (key == OF_KEY_RIGHT) {
+    } else if (key == RIGHT) {
         player.movingRight = true;
         player.xVel = player.walkVel;
+    } else if (key == JUMP) {
+        if (player.grounded) {
+            player.grounded = false;
+            player.yVel = -player.jumpVel;
+        }
     }
 }
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
-    if (key == OF_KEY_LEFT) {
+    if (key == LEFT) {
         player.movingLeft = false;
         if (player.movingRight) {
             player.xVel = player.walkVel;
         } else {
             player.xVel = 0;
         }
-    } else if (key == OF_KEY_RIGHT) {
+    } else if (key == RIGHT) {
         player.movingRight = false;
         if (player.movingLeft) {
             player.xVel = -player.walkVel;

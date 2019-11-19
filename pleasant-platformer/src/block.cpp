@@ -7,16 +7,16 @@
 
 #include "block.hpp"
 
-Block::Block(int x, int y, int width, int height, ofColor color_) {
+Block::Block(double x, double y, double width, double height, ofColor color_) {
     rect = ofRectangle(x, y, width, height);
     color = color_;
 }
 
-ofRectangle Block::getRect() {
+ofRectangle Block::getRect() const {
     return rect;
 }
 
-ofColor Block::getColor() {
+ofColor Block::getColor() const {
     return color;
 }
 

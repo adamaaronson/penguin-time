@@ -14,13 +14,12 @@
 #include "block.hpp"
 
 class Level {
-private:
+public:
+    Level() {};
+    Level(Player &player_, std::vector<Block> blocks_);
+    
     Player player;
     std::vector<Block> blocks;
-    
-public:
-    Player getPlayer();
-    std::vector<Block> getBlocks();
     
 };
 
