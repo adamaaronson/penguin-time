@@ -39,6 +39,17 @@ void Player::draw() {
     ofDrawRectangle(rect);
 }
 
+bool Player::canJump() {
+    return grounded && (yVel == 0 || yVel == gravity);
+}
+
+void Player::jump() {
+    if (canJump()) {
+        grounded = false;
+        yVel = -jumpVel;
+    }
+}
+
 Collision Player::getCollision(Block block) {
     ofRectangle bRect = block.getRect();
     double xDist = (rect.x + rect.width / 2) - (bRect.x + bRect.width / 2);
@@ -55,7 +66,7 @@ Collision Player::getCollision(Block block) {
         double xOverlap = halfWidths - std::abs(xDist);
         double yOverlap = halfHeights - std::abs(yDist);
         
-        if (xOverlap > yOverlap) {
+        if (xOverlap > yOverlap || (!(xDist > 0 && movingLeft) && !(xDist < 0 && movingRight))) {
             if (yDist > 0) {
                 col = Collision::TOP;
                 yShift = yOverlap;
@@ -71,10 +82,10 @@ Collision Player::getCollision(Block block) {
                 }
             }
         } else {
-            if (xDist > 0) {
+            if (xDist > 0 && movingLeft) {
                 col = Collision::LEFT;
                 xShift = xOverlap;
-            } else {
+            } else if (xDist < 0 && movingRight) {
                 col = Collision::RIGHT;
                 xShift = -xOverlap;
             }

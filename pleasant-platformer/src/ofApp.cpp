@@ -11,11 +11,14 @@
 void ofApp::setup(){
     ofSetBackgroundColor(ofColor(0x333333));
     
-    player = Player(width/2 - 25, height - 140, 90, 50, PLAYER_COLOR);
+    player = Player(width/2 - 25, height - 120, 50, 50, PLAYER_COLOR);
+    
     std::vector<Block> blocks;
     blocks.emplace_back(0, height - 50, width, 50, BLOCK_COLOR);
     blocks.emplace_back(width/3, height - 200, 50, 50, BLOCK_COLOR);
     blocks.emplace_back(2*width/3, height - 100, 50, 50, BLOCK_COLOR);
+    blocks.emplace_back(3*width/4, height - 400, 50, 50, BLOCK_COLOR);
+    blocks.emplace_back(width/2, height - 300, 50, 50, BLOCK_COLOR);
 
     
     levels.emplace_back(player, blocks);
@@ -27,6 +30,15 @@ void ofApp::update(){
     for (Block b : levels[currentLevel].blocks) {
         player.getCollision(b);
     }
+    if (!player.canJump()) {
+        player.grounded = false;
+    }
+    
+    if (player.grounded) {
+        player.setColor(ofColor::red);
+    } else {
+        player.setColor(PLAYER_COLOR);
+    }
 }
 
 //--------------------------------------------------------------
@@ -35,6 +47,9 @@ void ofApp::draw(){
     for (Block b : levels[currentLevel].blocks) {
         b.draw();
     }
+    ofSetColor(ofColor::white);
+    ofDrawBitmapString("xVel: " + std::to_string(player.xVel) + "\n" +
+                       "yVel: " + std::to_string(player.yVel), 10, 10);
 }
 
 //--------------------------------------------------------------
@@ -46,10 +61,7 @@ void ofApp::keyPressed(int key){
         player.movingRight = true;
         player.xVel = player.walkVel;
     } else if (key == JUMP) {
-        if (player.grounded) {
-            player.grounded = false;
-            player.yVel = -player.jumpVel;
-        }
+        player.jump();
     }
 }
 
