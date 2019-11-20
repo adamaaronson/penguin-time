@@ -14,12 +14,21 @@ void ofApp::setup(){
     player = Player(width/2 - 25, height - 120, 50, 50, PLAYER_COLOR);
     
     std::vector<Block> blocks;
+    
     blocks.emplace_back(0, height - 50, width, 50, BLOCK_COLOR);
-    blocks.emplace_back(width/3, height - 200, 50, 50, BLOCK_COLOR);
-    blocks.emplace_back(2*width/3, height - 100, 50, 50, BLOCK_COLOR);
-    blocks.emplace_back(3*width/4, height - 400, 50, 50, BLOCK_COLOR);
-    blocks.emplace_back(width/2, height - 300, 50, 50, BLOCK_COLOR);
-
+    
+    int horizontalBoxes = width / 50;
+    int verticalBoxes = height / 50;
+    for (int i = 0; i < 50; i++) {
+        blocks.emplace_back(50 * (int) ofRandom(horizontalBoxes), height - 50 * (int) ofRandom(verticalBoxes), 50, 50, BLOCK_COLOR);
+    }
+    
+    /*
+    blocks.emplace_back(1*width/5, height - 144, 50, 50, BLOCK_COLOR);
+    blocks.emplace_back(2*width/5, height - 146, 50, 50, BLOCK_COLOR);
+    blocks.emplace_back(3*width/5, height - 54, 50, 50, BLOCK_COLOR);
+    blocks.emplace_back(4*width/5, height - 56, 50, 50, BLOCK_COLOR);
+    */
     
     levels.emplace_back(player, blocks);
 }
@@ -27,12 +36,7 @@ void ofApp::setup(){
 //--------------------------------------------------------------
 void ofApp::update(){
     player.update();
-    for (Block b : levels[currentLevel].blocks) {
-        player.getCollision(b);
-    }
-    if (!player.canJump()) {
-        player.grounded = false;
-    }
+    player.collideAll(levels[currentLevel].blocks);
     
     if (player.grounded) {
         player.setColor(ofColor::red);
@@ -49,7 +53,7 @@ void ofApp::draw(){
     }
     ofSetColor(ofColor::white);
     ofDrawBitmapString("xVel: " + std::to_string(player.xVel) + "\n" +
-                       "yVel: " + std::to_string(player.yVel), 10, 10);
+                       "yVel: " + std::to_string(player.yVel) + "\n", 10, 10);
 }
 
 //--------------------------------------------------------------
