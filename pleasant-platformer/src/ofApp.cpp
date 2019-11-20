@@ -11,17 +11,19 @@
 void ofApp::setup(){
     ofSetBackgroundColor(ofColor(0x333333));
     
-    player = Player(width/2 - 25, height - 120, 50, 50, PLAYER_COLOR);
+    int gridSize = 40;
+    int numBlocks = 100;
     
     std::vector<Block> blocks;
+    blocks.emplace_back(0, height - gridSize, width, gridSize, BLOCK_COLOR);
     
-    blocks.emplace_back(0, height - 50, width, 50, BLOCK_COLOR);
-    
-    int horizontalBoxes = width / 50;
-    int verticalBoxes = height / 50;
-    for (int i = 0; i < 50; i++) {
-        blocks.emplace_back(50 * (int) ofRandom(horizontalBoxes), height - 50 * (int) ofRandom(verticalBoxes), 50, 50, BLOCK_COLOR);
+    int horizontalBoxes = width / gridSize;
+    int verticalBoxes = height / gridSize;
+    for (int i = 0; i < numBlocks; i++) {
+        blocks.emplace_back(gridSize * (int) ofRandom(horizontalBoxes), height - gridSize * (int) ofRandom(verticalBoxes), gridSize, gridSize, BLOCK_COLOR);
     }
+    player = Player(gridSize * (int) ofRandom(horizontalBoxes), height - gridSize * (1 + (int) ofRandom(verticalBoxes - 1)), gridSize, gridSize, PLAYER_COLOR);
+    player.gravity = DEFAULT_GRAVITY * 50 / gridSize;
     
     /*
     blocks.emplace_back(1*width/5, height - 144, 50, 50, BLOCK_COLOR);
