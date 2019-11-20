@@ -56,7 +56,6 @@ public:
     
     bool canJump();
     void jump();
-    Collision getCollision(Block block);
     
     void collideAll(std::vector<Block> blocks);
 };
