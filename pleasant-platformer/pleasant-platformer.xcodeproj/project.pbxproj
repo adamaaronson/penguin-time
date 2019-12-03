@@ -9,6 +9,168 @@
 		<string>46</string>
 		<key>objects</key>
 		<dict>
+			<key>FC2082F055DDDA6CCD2DBBF9</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.c.h</string>
+				<key>fileEncoding</key>
+				<string>4</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>ofxXmlSettings.h</string>
+				<key>path</key>
+				<string>../../../../../Downloads/of_v0.10.1_osx_release/addons/ofxXmlSettings/src/ofxXmlSettings.h</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>6ECEF0D76BC33727823EADFF</key>
+			<dict>
+				<key>children</key>
+				<array>
+					<string>4A0E411532BDC13C92B9EC5C</string>
+					<string>FC2082F055DDDA6CCD2DBBF9</string>
+				</array>
+				<key>isa</key>
+				<string>PBXGroup</string>
+				<key>name</key>
+				<string>src</string>
+				<key>sourceTree</key>
+				<string>&lt;group&gt;</string>
+			</dict>
+			<key>980BD2A9755382F39E06AA61</key>
+			<dict>
+				<key>fileRef</key>
+				<string>4A0E411532BDC13C92B9EC5C</string>
+				<key>isa</key>
+				<string>PBXBuildFile</string>
+			</dict>
+			<key>4A0E411532BDC13C92B9EC5C</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.cpp.cpp</string>
+				<key>fileEncoding</key>
+				<string>4</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>ofxXmlSettings.cpp</string>
+				<key>path</key>
+				<string>../../../../../Downloads/of_v0.10.1_osx_release/addons/ofxXmlSettings/src/ofxXmlSettings.cpp</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>B4BECFC1E68778F9B5F709E9</key>
+			<dict>
+				<key>fileRef</key>
+				<string>7E01BC29D9657F5F91AD0C54</string>
+				<key>isa</key>
+				<string>PBXBuildFile</string>
+			</dict>
+			<key>7E01BC29D9657F5F91AD0C54</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.cpp.cpp</string>
+				<key>fileEncoding</key>
+				<string>4</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>tinyxmlparser.cpp</string>
+				<key>path</key>
+				<string>../../../../../Downloads/of_v0.10.1_osx_release/addons/ofxXmlSettings/libs/tinyxmlparser.cpp</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>7F3C4B55309FD7CCE1C1F9B8</key>
+			<dict>
+				<key>fileRef</key>
+				<string>161589B127423C3560CE8AD0</string>
+				<key>isa</key>
+				<string>PBXBuildFile</string>
+			</dict>
+			<key>161589B127423C3560CE8AD0</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.cpp.cpp</string>
+				<key>fileEncoding</key>
+				<string>4</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>tinyxmlerror.cpp</string>
+				<key>path</key>
+				<string>../../../../../Downloads/of_v0.10.1_osx_release/addons/ofxXmlSettings/libs/tinyxmlerror.cpp</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>39AC1CF32CEBD464D30FAFE0</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.c.h</string>
+				<key>fileEncoding</key>
+				<string>4</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>tinyxml.h</string>
+				<key>path</key>
+				<string>../../../../../Downloads/of_v0.10.1_osx_release/addons/ofxXmlSettings/libs/tinyxml.h</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>6E54289412D2D94F45A05113</key>
+			<dict>
+				<key>children</key>
+				<array>
+					<string>DD14F2A4508B0E273D2CF740</string>
+					<string>39AC1CF32CEBD464D30FAFE0</string>
+					<string>161589B127423C3560CE8AD0</string>
+					<string>7E01BC29D9657F5F91AD0C54</string>
+				</array>
+				<key>isa</key>
+				<string>PBXGroup</string>
+				<key>name</key>
+				<string>libs</string>
+				<key>sourceTree</key>
+				<string>&lt;group&gt;</string>
+			</dict>
+			<key>1F4FB5C423662B96ADFDCC0B</key>
+			<dict>
+				<key>children</key>
+				<array>
+					<string>6E54289412D2D94F45A05113</string>
+					<string>6ECEF0D76BC33727823EADFF</string>
+				</array>
+				<key>isa</key>
+				<string>PBXGroup</string>
+				<key>name</key>
+				<string>ofxXmlSettings</string>
+				<key>sourceTree</key>
+				<string>&lt;group&gt;</string>
+			</dict>
+			<key>504993B228A020D8B4C261A6</key>
+			<dict>
+				<key>fileRef</key>
+				<string>DD14F2A4508B0E273D2CF740</string>
+				<key>isa</key>
+				<string>PBXBuildFile</string>
+			</dict>
+			<key>DD14F2A4508B0E273D2CF740</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.cpp.cpp</string>
+				<key>fileEncoding</key>
+				<string>4</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>tinyxml.cpp</string>
+				<key>path</key>
+				<string>../../../../../Downloads/of_v0.10.1_osx_release/addons/ofxXmlSettings/libs/tinyxml.cpp</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
 			<key>97EC3CC640B78FA9AFCCCEE5</key>
 			<dict>
 				<key>explicitFileType</key>
@@ -555,6 +717,8 @@ fi
 						<string>src</string>
 						<string>src</string>
 						<string>../../../../../Downloads/of_v0.10.1_osx_release/addons/ofxTexturePacker/src</string>
+						<string>../../../../../Downloads/of_v0.10.1_osx_release/addons/ofxXmlSettings/libs</string>
+						<string>../../../../../Downloads/of_v0.10.1_osx_release/addons/ofxXmlSettings/src</string>
 					</array>
 					<key>MACOSX_DEPLOYMENT_TARGET</key>
 					<string>10.9</string>
@@ -597,6 +761,8 @@ fi
 						<string>src</string>
 						<string>src</string>
 						<string>../../../../../Downloads/of_v0.10.1_osx_release/addons/ofxTexturePacker/src</string>
+						<string>../../../../../Downloads/of_v0.10.1_osx_release/addons/ofxXmlSettings/libs</string>
+						<string>../../../../../Downloads/of_v0.10.1_osx_release/addons/ofxXmlSettings/src</string>
 					</array>
 					<key>ICON</key>
 					<string>$(ICON_NAME_RELEASE)</string>
@@ -633,6 +799,7 @@ fi
 				<key>children</key>
 				<array>
 					<string>84C45104AE132D079BDCB6BC</string>
+					<string>1F4FB5C423662B96ADFDCC0B</string>
 				</array>
 				<key>isa</key>
 				<string>PBXGroup</string>
@@ -3400,6 +3567,8 @@ fi
 						<string>src</string>
 						<string>src</string>
 						<string>../../../../../Downloads/of_v0.10.1_osx_release/addons/ofxTexturePacker/src</string>
+						<string>../../../../../Downloads/of_v0.10.1_osx_release/addons/ofxXmlSettings/libs</string>
+						<string>../../../../../Downloads/of_v0.10.1_osx_release/addons/ofxXmlSettings/src</string>
 					</array>
 					<key>MACOSX_DEPLOYMENT_TARGET</key>
 					<string>10.9</string>
@@ -3462,6 +3631,8 @@ fi
 						<string>src</string>
 						<string>src</string>
 						<string>../../../../../Downloads/of_v0.10.1_osx_release/addons/ofxTexturePacker/src</string>
+						<string>../../../../../Downloads/of_v0.10.1_osx_release/addons/ofxXmlSettings/libs</string>
+						<string>../../../../../Downloads/of_v0.10.1_osx_release/addons/ofxXmlSettings/src</string>
 					</array>
 					<key>MACOSX_DEPLOYMENT_TARGET</key>
 					<string>10.9</string>
@@ -3494,6 +3665,10 @@ fi
 					<string>EAC42D1185BDDBA71560B985</string>
 					<string>B495CE7AF1AC5848DDE0E1D7</string>
 					<string>1E230713BCF78CF4E1CAF7DB</string>
+					<string>504993B228A020D8B4C261A6</string>
+					<string>7F3C4B55309FD7CCE1C1F9B8</string>
+					<string>B4BECFC1E68778F9B5F709E9</string>
+					<string>980BD2A9755382F39E06AA61</string>
 				</array>
 				<key>isa</key>
 				<string>PBXSourcesBuildPhase</string>
@@ -3595,6 +3770,8 @@ fi
 						<string>src</string>
 						<string>src</string>
 						<string>../../../../../Downloads/of_v0.10.1_osx_release/addons/ofxTexturePacker/src</string>
+						<string>../../../../../Downloads/of_v0.10.1_osx_release/addons/ofxXmlSettings/libs</string>
+						<string>../../../../../Downloads/of_v0.10.1_osx_release/addons/ofxXmlSettings/src</string>
 					</array>
 					<key>ICON</key>
 					<string>$(ICON_NAME_DEBUG)</string>
@@ -3648,6 +3825,8 @@ fi
 						<string>src</string>
 						<string>src</string>
 						<string>../../../../../Downloads/of_v0.10.1_osx_release/addons/ofxTexturePacker/src</string>
+						<string>../../../../../Downloads/of_v0.10.1_osx_release/addons/ofxXmlSettings/libs</string>
+						<string>../../../../../Downloads/of_v0.10.1_osx_release/addons/ofxXmlSettings/src</string>
 					</array>
 					<key>ICON</key>
 					<string>$(ICON_NAME_RELEASE)</string>
