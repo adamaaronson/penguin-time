@@ -11,10 +11,17 @@
 #include <stdio.h>
 #include <ofMain.h>
 
+enum BlockType {
+    AIR,
+    GROUND,
+    DEATH
+};
+
 class Block {
 private:
     ofRectangle rect;
     ofColor color;
+    BlockType type;
     
 public:
     Block() {};

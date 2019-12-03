@@ -53,7 +53,6 @@ public:
     double jumpVel = DEFAULT_JUMP_VEL;
     double gravity = DEFAULT_GRAVITY;
     
-    
     bool canJump();
     void jump();
     

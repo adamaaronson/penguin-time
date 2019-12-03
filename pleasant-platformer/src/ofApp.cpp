@@ -54,8 +54,8 @@ void ofApp::draw(){
         b.draw();
     }
     ofSetColor(ofColor::white);
-    ofDrawBitmapString("xVel: " + std::to_string(player.xVel) + "\n" +
-                       "yVel: " + std::to_string(player.yVel) + "\n", 10, 10);
+    /*ofDrawBitmapString("xVel: " + std::to_string(player.xVel) + "\n" +
+                       "yVel: " + std::to_string(player.yVel) + "\n", 10, 10);*/
 }
 
 //--------------------------------------------------------------
@@ -68,6 +68,9 @@ void ofApp::keyPressed(int key){
         player.xVel = player.walkVel;
     } else if (key == JUMP) {
         player.jump();
+    } else if (key == 32) {
+        setup();
+        currentLevel++;
     }
 }
 

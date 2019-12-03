@@ -55,7 +55,7 @@ void Player::jump() {
 void Player::collideAll(std::vector<Block> blocks) {
     double xShift = 0;
     double yShift = 0;
-    for (Block block : blocks) {
+    for (Block &block : blocks) {
         ofRectangle bRect = block.getRect();
         double xDist = (rect.x + rect.width / 2) - (bRect.x + bRect.width / 2);
         double yDist = (rect.y + rect.height / 2) - (bRect.y + bRect.height / 2);

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "ofMain.h"
-#include "ofxBox2d.h"
 #include "player.hpp"
 #include "block.hpp"
 #include "level.hpp"
