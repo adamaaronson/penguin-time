@@ -11,6 +11,9 @@
 #include <stdio.h>
 #include <ofMain.h>
 
+#define DEFAULT_BLOCK_WIDTH 48
+#define DEFAULT_BLOCK_HEIGHT 48
+
 enum BlockType {
     AIR,
     GROUND,
@@ -22,15 +25,19 @@ private:
     ofRectangle rect;
     ofColor color;
     BlockType type;
+    bool top;
     
 public:
     Block() {};
     Block(double x, double y, double width, double height, ofColor color_);
+    Block(double x, double y, double width, double height, BlockType type_, bool top_);
     
     void draw();
     
     ofRectangle getRect() const;
     ofColor getColor() const;
+    BlockType getType() const;
+    bool isTop() const;
     
     void setColor(ofColor color_);
 };

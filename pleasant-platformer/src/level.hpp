@@ -13,19 +13,18 @@
 #include "player.hpp"
 #include "block.hpp"
 
+#define DEFAULT_LEVEL_WIDTH 20
+#define DEFAULT_LEVEL_HEIGHT 12
+
 class Level {
-private:
-    int levelWidth;
-    int levelHeight;
-    std::vector<std::vector<BlockType>> blockTypes;
     
 public:
     Level() {};
     Level(Player &player_, std::vector<Block> blocks_);
+    Level(Player &player_, std::vector<std::vector<BlockType>> blockTypes);
     
     Player player;
     std::vector<Block> blocks;
-    
 };
 
 #endif /* level_hpp */

@@ -11,7 +11,7 @@
 void ofApp::setup(){
     ofSetBackgroundColor(ofColor(0x333333));
     
-    int gridSize = 40;
+    int gridSize = DEFAULT_BLOCK_WIDTH;
     int numBlocks = 100;
     
     std::vector<Block> blocks;

@@ -12,9 +12,9 @@
 #include <ofMain.h>
 #include "block.hpp"
 
-#define DEFAULT_WALK_VEL 5.0
-#define DEFAULT_JUMP_VEL 8.0
-#define DEFAULT_GRAVITY 0.2
+#define DEFAULT_WALK_VEL DEFAULT_BLOCK_WIDTH / 8
+#define DEFAULT_JUMP_VEL DEFAULT_BLOCK_WIDTH / 5
+#define DEFAULT_GRAVITY 0.35
 
 enum Collision {
     TOP,
