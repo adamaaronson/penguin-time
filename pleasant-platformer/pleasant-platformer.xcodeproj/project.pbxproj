@@ -107,6 +107,7 @@
 		9A88E5B739CD5CAA3B062DDB /* ofxTPTypes.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxTPTypes.h; path = ../../../../../Downloads/of_v0.10.1_osx_release/addons/ofxTexturePacker/src/ofxTPTypes.h; sourceTree = SOURCE_ROOT; };
 		9CE2D13146B6D4122F249FF9 /* objects.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = objects.h; path = ../../../../../Downloads/of_v0.10.1_osx_release/addons/ofxPoco/libs/openssl/include/openssl/objects.h; sourceTree = SOURCE_ROOT; };
 		A341129E0AAFF0E6EB9AB5D6 /* safestack.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = safestack.h; path = ../../../../../Downloads/of_v0.10.1_osx_release/addons/ofxPoco/libs/openssl/include/openssl/safestack.h; sourceTree = SOURCE_ROOT; };
+		A371BFCE2396F99000BF2178 /* spritesheet.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = spritesheet.xml; sourceTree = "<group>"; };
 		AC4504405135969DE127001F /* asn1t.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = asn1t.h; path = ../../../../../Downloads/of_v0.10.1_osx_release/addons/ofxPoco/libs/openssl/include/openssl/asn1t.h; sourceTree = SOURCE_ROOT; };
 		AE592C9A47327EC371323292 /* ofxXmlPoco.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxXmlPoco.h; path = ../../../../../Downloads/of_v0.10.1_osx_release/addons/ofxPoco/src/ofxXmlPoco.h; sourceTree = SOURCE_ROOT; };
 		B2E03007B53513538E586F64 /* bio.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = bio.h; path = ../../../../../Downloads/of_v0.10.1_osx_release/addons/ofxPoco/libs/openssl/include/openssl/bio.h; sourceTree = SOURCE_ROOT; };
@@ -830,12 +831,13 @@
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
 				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
-				BCDE8C9BEBCF137ABA15868F /* player.cpp */,
-				C42981E365C09748A151A803 /* level.cpp */,
-				6F9E073E6D03C78F3528C896 /* block.cpp */,
-				46DCEE51FF9AA52348AF0C0B /* level.hpp */,
-				02CCF4101C890461A385AD81 /* block.hpp */,
 				FE3A3345BA1EF448649CE3C1 /* player.hpp */,
+				BCDE8C9BEBCF137ABA15868F /* player.cpp */,
+				46DCEE51FF9AA52348AF0C0B /* level.hpp */,
+				C42981E365C09748A151A803 /* level.cpp */,
+				02CCF4101C890461A385AD81 /* block.hpp */,
+				6F9E073E6D03C78F3528C896 /* block.cpp */,
+				A371BFCE2396F99000BF2178 /* spritesheet.xml */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;

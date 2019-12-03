@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
+<!-- $TexturePacker:SmartUpdate:de0b191b5e447883a5e93688e65db5f0:c37f9ede89621dcb2eb19e90fac01841:25a1b0439aefd88213f0e23bf5e4ddcc$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+pX => x pos of the pivot point (relative to sprite width)
+pY => y pos of the pivot point (relative to sprite height)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+-->
+<TextureAtlas imagePath="spritesheet.png" width="64" height="48">
+    <sprite n="PenguinRightStand" x="0" y="0" w="16" h="16" pX="0.5" pY="0.5"/>
+    <sprite n="PenguinRightWalk1" x="16" y="0" w="16" h="16" pX="0.5" pY="0.5"/>
+    <sprite n="PenguinRightWalk2" x="32" y="0" w="16" h="16" pX="0.5" pY="0.5"/>
+    <sprite n="PenguinRightJump" x="48" y="0" w="16" h="16" pX="0.5" pY="0.5"/>
+    <sprite n="PenguinLeftStand" x="0" y="16" w="16" h="16" pX="0.5" pY="0.5"/>
+    <sprite n="PenguinLeftWalk1" x="16" y="16" w="16" h="16" pX="0.5" pY="0.5"/>
+    <sprite n="PenguinLeftWalk2" x="32" y="16" w="16" h="16" pX="0.5" pY="0.5"/>
+    <sprite n="PenguinRightJump" x="48" y="16" w="16" h="16" pX="0.5" pY="0.5"/>
+    <sprite n="SandBottom" x="0" y="32" w="16" h="16" pX="0.5" pY="0.5"/>
+    <sprite n="SandTop" x="16" y="32" w="16" h="16" pX="0.5" pY="0.5"/>
+    <sprite n="CactusBottom" x="32" y="32" w="16" h="16" pX="0.5" pY="0.5"/>
+    <sprite n="CactusTop" x="48" y="32" w="16" h="16" pX="0.5" pY="0.5"/>
+</TextureAtlas>

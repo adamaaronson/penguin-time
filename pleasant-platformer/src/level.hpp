@@ -14,6 +14,11 @@
 #include "block.hpp"
 
 class Level {
+private:
+    int levelWidth;
+    int levelHeight;
+    std::vector<std::vector<BlockType>> blockTypes;
+    
 public:
     Level() {};
     Level(Player &player_, std::vector<Block> blocks_);
