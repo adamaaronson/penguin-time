@@ -7,3 +7,8 @@
 - **11/18/19** Implemented moving the player with arrow keys and basic collision detection
 - **11/19/19** Fixed a bunch of issues with collision detection and player control
 - **11/20/19** Finalized collision detection and tested with various player sizes and worlds
+
+### **Thanksgiving / Week 2**
+
+- **Thanksgiving Break** Decided on desert theme
+- **12/02/19** Created sprites for penguin, sand, and cacti
