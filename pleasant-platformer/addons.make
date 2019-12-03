@@ -1,2 +1,3 @@
+ofxPoco
 ofxTexturePacker
 ofxXmlSettings
