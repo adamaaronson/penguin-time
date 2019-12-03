@@ -4,6 +4,7 @@
 #include "player.hpp"
 #include "block.hpp"
 #include "level.hpp"
+#include "ofxTexturePacker.h"
 
 class ofApp : public ofBaseApp {
     Player player;
@@ -29,4 +30,19 @@ class ofApp : public ofBaseApp {
         void windowResized(int w, int h);
         void dragEvent(ofDragInfo dragInfo);
         void gotMessage(ofMessage msg);
+    
+    ofxTexturePackerPtr spritesheet;
+    
+    ofxTPSpritePtr groundBottom;
+    ofxTPSpritePtr groundTop;
+    ofxTPSpritePtr deathBottom;
+    ofxTPSpritePtr deathTop;
+    
+    ofxTPSpritePtr playerLeftStand;
+    ofxTPSpritePtr playerRightStand;
+    ofxTPSpritePtr playerLeftJump;
+    ofxTPSpritePtr playerRightJump;
+    
+    ofxTPAnimatedSpritePtr playerLeftWalk;
+    ofxTPAnimatedSpritePtr playerRightWalk;
 };

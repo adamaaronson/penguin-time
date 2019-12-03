@@ -16,16 +16,16 @@ oH => sprite's original height (only available if trimmed)
 r => 'y' only set if sprite is rotated
 -->
 <TextureAtlas imagePath="spritesheet.png" width="256" height="192">
-    <sprite n="PenguinRightStand" x="0" y="0" w="64" h="64" pX="0.5" pY="0.5"/>
-    <sprite n="PenguinRightWalk1" x="64" y="0" w="64" h="64" pX="0.5" pY="0.5"/>
-    <sprite n="PenguinRightWalk2" x="128" y="0" w="64" h="64" pX="0.5" pY="0.5"/>
-    <sprite n="PenguinRightJump" x="192" y="0" w="64" h="64" pX="0.5" pY="0.5"/>
-    <sprite n="PenguinLeftStand" x="0" y="64" w="64" h="64" pX="0.5" pY="0.5"/>
-    <sprite n="PenguinLeftWalk1" x="64" y="64" w="64" h="64" pX="0.5" pY="0.5"/>
-    <sprite n="PenguinLeftWalk2" x="128" y="64" w="64" h="64" pX="0.5" pY="0.5"/>
-    <sprite n="PenguinRightJump" x="192" y="64" w="64" h="64" pX="0.5" pY="0.5"/>
-    <sprite n="SandBottom" x="0" y="128" w="64" h="64" pX="0.5" pY="0.5"/>
-    <sprite n="SandTop" x="64" y="128" w="64" h="64" pX="0.5" pY="0.5"/>
-    <sprite n="CactusBottom" x="128" y="128" w="64" h="64" pX="0.5" pY="0.5"/>
-    <sprite n="CactusTop" x="192" y="128" w="64" h="64" pX="0.5" pY="0.5"/>
+    <sprite n="PlayerRightStand" x="0" y="0" w="48" h="48" pX="0" pY="0"/>
+    <sprite n="PlayerRightWalk1" x="48" y="0" w="48" h="48" pX="0" pY="0"/>
+    <sprite n="PlayerRightWalk2" x="96" y="0" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="PlayerRightJump" x="144" y="0" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="PlayerLeftStand" x="0" y="48" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="PlayerLeftWalk1" x="48" y="48" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="PlayerLeftWalk2" x="96" y="48" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="PlayerRightJump" x="144" y="48" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="GroundBottom" x="0" y="96" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="GroundTop" x="48" y="96" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="DeathBottom" x="96" y="96" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="DeathTop" x="144" y="96" w="48" h="48" pX="0.5" pY="0.5"/>
 </TextureAtlas>

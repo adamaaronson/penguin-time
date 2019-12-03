@@ -9,9 +9,15 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-    ofSetBackgroundColor(ofColor(0x333333));
+    ofSetBackgroundColor(ofColor(192,246,252));
     
-    int gridSize = DEFAULT_BLOCK_WIDTH;
+    spritesheet = ofxTexturePackerPtr(new ofxTexturePacker());
+    spritesheet->load("/Users/adamaaronson/Documents/UIUC/CS126/fantastic-finale-adamaaronson/pleasant-platformer/src/spritesheet.xml");
+    
+    playerRightStand = spritesheet->getSprite("PlayerRightStand");
+    
+    
+    int gridSize = 48;
     int numBlocks = 100;
     
     std::vector<Block> blocks;
@@ -24,13 +30,6 @@ void ofApp::setup(){
     }
     player = Player(gridSize * (int) ofRandom(horizontalBoxes), height - gridSize * (1 + (int) ofRandom(verticalBoxes - 1)), gridSize, gridSize, PLAYER_COLOR);
     player.gravity = DEFAULT_GRAVITY * 50 / gridSize;
-    
-    /*
-    blocks.emplace_back(1*width/5, height - 144, 50, 50, BLOCK_COLOR);
-    blocks.emplace_back(2*width/5, height - 146, 50, 50, BLOCK_COLOR);
-    blocks.emplace_back(3*width/5, height - 54, 50, 50, BLOCK_COLOR);
-    blocks.emplace_back(4*width/5, height - 56, 50, 50, BLOCK_COLOR);
-    */
     
     levels.emplace_back(player, blocks);
 }
@@ -49,7 +48,7 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    player.draw();
+    playerRightStand->draw(player.getRect().x, player.getRect().y);
     for (Block b : levels[currentLevel].blocks) {
         b.draw();
     }
