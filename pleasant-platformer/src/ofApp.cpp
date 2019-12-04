@@ -10,7 +10,7 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-    ofSetBackgroundColor(ofColor(170,230,255));
+    ofSetBackgroundColor(ofColor(160,205,220));
     
     // load sprites
     
@@ -44,12 +44,15 @@ void ofApp::setup(){
     
     int gridSize = DEFAULT_BLOCK_WIDTH;
     double blockChance = 0.3;
+    double deathChance = 0.1;
     
     std::vector<std::vector<BlockType>> blockTypes;
     for (int row = 0; row < DEFAULT_LEVEL_HEIGHT; row++) {
         blockTypes.emplace_back();
         for (int col = 0; col < DEFAULT_LEVEL_WIDTH; col++) {
-            if (ofRandom(1) < blockChance) {
+            if (ofRandom(1) < deathChance) {
+                blockTypes[row].push_back(DEATH);
+            } else if (ofRandom(1) < blockChance) {
                 blockTypes[row].push_back(GROUND);
             } else {
                 blockTypes[row].push_back(AIR);
@@ -114,10 +117,18 @@ void ofApp::draw(){
     
     
     for (Block b : levels[currentLevel].blocks) {
-        if (b.isTop()) {
-            groundTop->draw(b.getRect().x, b.getRect().y);
-        } else {
-            groundBottom->draw(b.getRect().x, b.getRect().y);
+        if (b.getType() == GROUND) {
+            if (b.isTop()) {
+                groundTop->draw(b.getRect().x, b.getRect().y);
+            } else {
+                groundBottom->draw(b.getRect().x, b.getRect().y);
+            }
+        } else if (b.getType() == DEATH) {
+            if (b.isTop()) {
+                deathTop->draw(b.getRect().x, b.getRect().y);
+            } else {
+                deathBottom->draw(b.getRect().x, b.getRect().y);
+            }
         }
     }
 }
