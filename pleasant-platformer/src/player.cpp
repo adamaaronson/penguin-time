@@ -64,6 +64,12 @@ void Player::collideAll(std::vector<Block> blocks) {
         double halfHeights = rect.height / 2 + bRect.height / 2;
         
         if (std::abs(xDist) < halfWidths && std::abs(yDist) < halfHeights) {
+            if (block.getType() == DEATH) {
+                xShift = 0;
+                yShift = 0;
+                kaput = true;
+                break;
+            }
             double xOverlap = halfWidths - std::abs(xDist);
             double yOverlap = halfHeights - std::abs(yDist);
 
@@ -101,4 +107,9 @@ void Player::collideAll(std::vector<Block> blocks) {
             }
         }
     }
+}
+
+void Player::moveTo(ofVec2f point) {
+    rect.setX(point.x);
+    rect.setY(point.y);
 }

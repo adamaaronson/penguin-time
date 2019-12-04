@@ -50,6 +50,7 @@ public:
     bool movingRight = false;
     bool facingRight = true;
     bool grounded = true;
+    bool kaput = false;
     
     double walkVel = DEFAULT_WALK_VEL;
     double jumpVel = DEFAULT_JUMP_VEL;
@@ -59,6 +60,7 @@ public:
     void jump();
     
     void collideAll(std::vector<Block> blocks);
+    void moveTo(ofVec2f point);
 };
 
 #endif /* player_hpp */

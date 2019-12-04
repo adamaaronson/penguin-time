@@ -20,10 +20,10 @@ class Level {
     
 public:
     Level() {};
-    Level(Player &player_, std::vector<Block> blocks_);
-    Level(Player &player_, std::vector<std::vector<BlockType>> blockTypes);
+    Level(ofVec2f startingPoint_, std::vector<Block> blocks_);
+    Level(ofVec2f startingPoint_, std::vector<std::vector<BlockType>> blockTypes);
     
-    Player player;
+    ofVec2f startingPoint;
     std::vector<Block> blocks;
 };
 

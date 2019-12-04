@@ -44,7 +44,7 @@ void ofApp::setup(){
     
     int gridSize = DEFAULT_BLOCK_WIDTH;
     double blockChance = 0.3;
-    double deathChance = 0.1;
+    double deathChance = 0.06;
     
     std::vector<std::vector<BlockType>> blockTypes;
     for (int row = 0; row < DEFAULT_LEVEL_HEIGHT; row++) {
@@ -64,9 +64,12 @@ void ofApp::setup(){
         blockTypes[DEFAULT_LEVEL_HEIGHT - 1][col] = GROUND;
     }
     
-    player = Player(gridSize * (int) ofRandom(DEFAULT_LEVEL_WIDTH), height - gridSize * (1 + (int) ofRandom(DEFAULT_LEVEL_HEIGHT - 1)), gridSize, gridSize, PLAYER_COLOR);
+    float startingX = gridSize * (int) ofRandom(DEFAULT_LEVEL_WIDTH);
+    float startingY = gridSize * (int) ofRandom(DEFAULT_LEVEL_HEIGHT - 2);
     
-    levels.emplace_back(player, blockTypes);
+    player = Player(startingX, startingY, gridSize, gridSize, PLAYER_COLOR);
+    
+    levels.emplace_back(ofVec2f(startingX, startingY), blockTypes);
 }
 
 //--------------------------------------------------------------
@@ -74,10 +77,10 @@ void ofApp::update(){
     player.update();
     player.collideAll(levels[currentLevel].blocks);
     
-    if (player.grounded) {
-        player.setColor(ofColor::red);
-    } else {
-        player.setColor(PLAYER_COLOR);
+    if (player.kaput) {
+        player.moveTo(levels[currentLevel].startingPoint);
+        player.yVel = 0;
+        player.kaput = false;
     }
     
     if (player.movingRight) {
