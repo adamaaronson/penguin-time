@@ -6,32 +6,64 @@
 
 #define PLAYER_COLOR ofColor::steelBlue
 #define BLOCK_COLOR ofColor::black
+#define WADDLE_SPEED 10
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-    ofSetBackgroundColor(ofColor(192,246,252));
+    ofSetBackgroundColor(ofColor(170,230,255));
+    
+    // load sprites
     
     spritesheet = ofxTexturePackerPtr(new ofxTexturePacker());
     spritesheet->load("/Users/adamaaronson/Documents/UIUC/CS126/fantastic-finale-adamaaronson/pleasant-platformer/src/spritesheet.xml");
     
+    groundTop = spritesheet->getSprite("GroundTop");
+    groundBottom = spritesheet->getSprite("GroundBottom");
+    deathTop = spritesheet->getSprite("DeathTop");
+    deathBottom = spritesheet->getSprite("DeathBottom");
+    
     playerRightStand = spritesheet->getSprite("PlayerRightStand");
+    playerLeftStand = spritesheet->getSprite("PlayerLeftStand");
+    playerRightJump = spritesheet->getSprite("PlayerRightJump");
+    playerLeftJump = spritesheet->getSprite("PlayerLeftJump");
     
-    
-    int gridSize = 48;
-    int numBlocks = 100;
-    
-    std::vector<Block> blocks;
-    blocks.emplace_back(0, height - gridSize, width, gridSize, BLOCK_COLOR);
-    
-    int horizontalBoxes = width / gridSize;
-    int verticalBoxes = height / gridSize;
-    for (int i = 0; i < numBlocks; i++) {
-        blocks.emplace_back(gridSize * (int) ofRandom(horizontalBoxes), height - gridSize * (int) ofRandom(verticalBoxes), gridSize, gridSize, BLOCK_COLOR);
+    playerRightWalk = spritesheet->getAnimatedSprite("PlayerRightWalk");
+    if (playerRightWalk != NULL) {
+        playerRightWalk->setSpeed(WADDLE_SPEED);
+        playerRightWalk->play();
+    } else {
+        ofLog(OF_LOG_FATAL_ERROR, "ofApp::setup():: Could not load animated sprite");
     }
-    player = Player(gridSize * (int) ofRandom(horizontalBoxes), height - gridSize * (1 + (int) ofRandom(verticalBoxes - 1)), gridSize, gridSize, PLAYER_COLOR);
-    player.gravity = DEFAULT_GRAVITY * 50 / gridSize;
+    playerLeftWalk = spritesheet->getAnimatedSprite("PlayerLeftWalk");
+    if (playerLeftWalk != NULL) {
+        playerLeftWalk->setSpeed(WADDLE_SPEED);
+        playerLeftWalk->play();
+    } else {
+        ofLog(OF_LOG_FATAL_ERROR, "ofApp::setup():: Could not load animated sprite");
+    }
     
-    levels.emplace_back(player, blocks);
+    int gridSize = DEFAULT_BLOCK_WIDTH;
+    double blockChance = 0.3;
+    
+    std::vector<std::vector<BlockType>> blockTypes;
+    for (int row = 0; row < DEFAULT_LEVEL_HEIGHT; row++) {
+        blockTypes.emplace_back();
+        for (int col = 0; col < DEFAULT_LEVEL_WIDTH; col++) {
+            if (ofRandom(1) < blockChance) {
+                blockTypes[row].push_back(GROUND);
+            } else {
+                blockTypes[row].push_back(AIR);
+            }
+        }
+    }
+    
+    for (int col = 0; col < DEFAULT_LEVEL_WIDTH; col++) {
+        blockTypes[DEFAULT_LEVEL_HEIGHT - 1][col] = GROUND;
+    }
+    
+    player = Player(gridSize * (int) ofRandom(DEFAULT_LEVEL_WIDTH), height - gridSize * (1 + (int) ofRandom(DEFAULT_LEVEL_HEIGHT - 1)), gridSize, gridSize, PLAYER_COLOR);
+    
+    levels.emplace_back(player, blockTypes);
 }
 
 //--------------------------------------------------------------
@@ -44,26 +76,61 @@ void ofApp::update(){
     } else {
         player.setColor(PLAYER_COLOR);
     }
+    
+    if (player.movingRight) {
+        if (playerRightWalk) {
+            playerRightWalk->update();
+        }
+    } else if (player.movingLeft) {
+        if (playerLeftWalk) {
+            playerLeftWalk->update();
+        }
+    }
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    playerRightStand->draw(player.getRect().x, player.getRect().y);
-    for (Block b : levels[currentLevel].blocks) {
-        b.draw();
+    // draw player
+    float playerX = player.getRect().x;
+    float playerY = player.getRect().y;
+    
+    if (!player.grounded) {
+        if (player.facingRight) {
+            playerRightJump->draw(playerX, playerY);
+        } else {
+            playerLeftJump->draw(playerX, playerY);
+        }
+    } else if (player.movingRight) {
+        playerRightWalk->draw(playerX, playerY);
+    } else if (player.movingLeft) {
+        playerLeftWalk->draw(playerX, playerY);
+    } else {
+        if (player.facingRight) {
+            playerRightStand->draw(playerX, playerY);
+        } else {
+            playerLeftStand->draw(playerX, playerY);
+        }
     }
-    ofSetColor(ofColor::white);
-    /*ofDrawBitmapString("xVel: " + std::to_string(player.xVel) + "\n" +
-                       "yVel: " + std::to_string(player.yVel) + "\n", 10, 10);*/
+    
+    
+    for (Block b : levels[currentLevel].blocks) {
+        if (b.isTop()) {
+            groundTop->draw(b.getRect().x, b.getRect().y);
+        } else {
+            groundBottom->draw(b.getRect().x, b.getRect().y);
+        }
+    }
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
     if (key == LEFT) {
         player.movingLeft = true;
+        player.facingRight = false;
         player.xVel = -player.walkVel;
     } else if (key == RIGHT) {
         player.movingRight = true;
+        player.facingRight = true;
         player.xVel = player.walkVel;
     } else if (key == JUMP) {
         player.jump();

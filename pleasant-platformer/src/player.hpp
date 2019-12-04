@@ -10,6 +10,7 @@
 
 #include <stdio.h>
 #include <ofMain.h>
+#include <ofxTexturePacker.h>
 #include "block.hpp"
 
 #define DEFAULT_WALK_VEL DEFAULT_BLOCK_WIDTH / 8
@@ -47,6 +48,7 @@ public:
     
     bool movingLeft = false;
     bool movingRight = false;
+    bool facingRight = true;
     bool grounded = true;
     
     double walkVel = DEFAULT_WALK_VEL;
