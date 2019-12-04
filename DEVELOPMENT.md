@@ -12,3 +12,4 @@
 
 - **Thanksgiving Break** Decided on desert theme
 - **12/02/19** Created sprites for penguin, sand, and cacti
+- **12/03/19** Added ofxTexturePacker addon, created spritesheet XML, and implemented different types of blocks
