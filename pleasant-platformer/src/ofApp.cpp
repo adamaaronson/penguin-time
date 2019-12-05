@@ -41,16 +41,28 @@ void ofApp::setup(){
     } else {
         ofLog(OF_LOG_FATAL_ERROR, "ofApp::setup():: Could not load animated sprite");
     }
+    enemyWalk = spritesheet->getAnimatedSprite("EnemyWalk");
+    if (enemyWalk != NULL) {
+        enemyWalk->setSpeed(WADDLE_SPEED);
+        enemyWalk->play();
+    } else {
+        ofLog(OF_LOG_FATAL_ERROR, "ofApp::setup():: Could not load animated sprite");
+    }
     
     int gridSize = DEFAULT_BLOCK_WIDTH;
     double blockChance = 0.3;
-    double deathChance = 0.06;
+    double deathChance = 0.1;
+    double enemyChance = 0.04;
     
+    std::vector<double> enemyDistances;
     std::vector<std::vector<BlockType>> blockTypes;
     for (int row = 0; row < DEFAULT_LEVEL_HEIGHT; row++) {
         blockTypes.emplace_back();
         for (int col = 0; col < DEFAULT_LEVEL_WIDTH; col++) {
-            if (ofRandom(1) < deathChance) {
+            if (ofRandom(1) < enemyChance) {
+                blockTypes[row].push_back(ENEMY);
+                enemyDistances.push_back(3 * gridSize);
+            } else if (ofRandom(1) < deathChance) {
                 blockTypes[row].push_back(DEATH);
             } else if (ofRandom(1) < blockChance) {
                 blockTypes[row].push_back(GROUND);
@@ -69,16 +81,18 @@ void ofApp::setup(){
     
     player = Player(startingX, startingY, gridSize, gridSize, PLAYER_COLOR);
     
-    levels.emplace_back(ofVec2f(startingX, startingY), blockTypes);
+    levels.emplace_back(ofVec2f(startingX, startingY), blockTypes, enemyDistances);
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
+    Level thisLevel = levels[currentLevel];
+    
     player.update();
-    player.collideAll(levels[currentLevel].blocks);
+    player.collideAll(thisLevel.blocks);
     
     if (player.kaput) {
-        player.moveTo(levels[currentLevel].startingPoint);
+        player.moveTo(thisLevel.startingPoint);
         player.yVel = 0;
         player.kaput = false;
     }
@@ -91,6 +105,14 @@ void ofApp::update(){
         if (playerLeftWalk) {
             playerLeftWalk->update();
         }
+    }
+    
+    if (enemyWalk) {
+        enemyWalk->update();
+    }
+    
+    for (Block* b : thisLevel.blocks) {
+        b->update();
     }
 }
 
@@ -119,19 +141,24 @@ void ofApp::draw(){
     }
     
     
-    for (Block b : levels[currentLevel].blocks) {
-        if (b.getType() == GROUND) {
-            if (b.isTop()) {
-                groundTop->draw(b.getRect().x, b.getRect().y);
+    for (Block* b : levels[currentLevel].blocks) {
+        BlockType bType = b->getType();
+        bool bTop = b->isTop();
+        ofRectangle bRect = b->getRect();
+        if (bType == GROUND) {
+            if (bTop) {
+                groundTop->draw(bRect.x, bRect.y);
             } else {
-                groundBottom->draw(b.getRect().x, b.getRect().y);
+                groundBottom->draw(bRect.x, bRect.y);
             }
-        } else if (b.getType() == DEATH) {
-            if (b.isTop()) {
-                deathTop->draw(b.getRect().x, b.getRect().y);
+        } else if (bType == DEATH) {
+            if (bTop) {
+                deathTop->draw(bRect.x, bRect.y);
             } else {
-                deathBottom->draw(b.getRect().x, b.getRect().y);
+                deathBottom->draw(bRect.x, bRect.y);
             }
+        } else if (bType == ENEMY) {
+            enemyWalk->draw(bRect.x, bRect.y);
         }
     }
 }

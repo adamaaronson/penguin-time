@@ -59,7 +59,7 @@ public:
     bool canJump();
     void jump();
     
-    void collideAll(std::vector<Block> blocks);
+    void collideAll(std::vector<Block*> blocks);
     void moveTo(ofVec2f point);
 };
 

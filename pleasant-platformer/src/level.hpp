@@ -12,6 +12,7 @@
 #include <ofMain.h>
 #include "player.hpp"
 #include "block.hpp"
+#include "enemy.hpp"
 
 #define DEFAULT_LEVEL_WIDTH 20
 #define DEFAULT_LEVEL_HEIGHT 12
@@ -20,11 +21,11 @@ class Level {
     
 public:
     Level() {};
-    Level(ofVec2f startingPoint_, std::vector<Block> blocks_);
-    Level(ofVec2f startingPoint_, std::vector<std::vector<BlockType>> blockTypes);
+    Level(ofVec2f startingPoint_, std::vector<Block*> blocks_);
+    Level(ofVec2f startingPoint_, std::vector<std::vector<BlockType>> blockTypes, std::vector<double> enemyDistances);
     
     ofVec2f startingPoint;
-    std::vector<Block> blocks;
+    std::vector<Block*> blocks;
 };
 
 #endif /* level_hpp */

@@ -15,7 +15,7 @@ oW => sprite's original width (only available if trimmed)
 oH => sprite's original height (only available if trimmed)
 r => 'y' only set if sprite is rotated
 -->
-<TextureAtlas imagePath="spritesheet.png" width="256" height="192">
+<TextureAtlas imagePath="spritesheet.png" width="192" height="192">
     <sprite n="PlayerRightStand" x="0" y="0" w="48" h="48" pX="0" pY="0"/>
     <sprite n="PlayerRightWalk1.png" x="48" y="0" w="48" h="48" pX="0" pY="0"/>
     <sprite n="PlayerRightWalk2.png" x="96" y="0" w="48" h="48" pX="0" pY="0"/>
@@ -28,4 +28,7 @@ r => 'y' only set if sprite is rotated
     <sprite n="GroundTop" x="48" y="96" w="48" h="48" pX="0" pY="0"/>
     <sprite n="DeathBottom" x="96" y="96" w="48" h="48" pX="0" pY="0"/>
     <sprite n="DeathTop" x="144" y="96" w="48" h="48" pX="0" pY="0"/>
+    <sprite n="EnemyStand" x="0" y="144" w="48" h="48" pX="0" pY="0"/>
+    <sprite n="EnemyWalk1.png" x="48" y="144" w="48" h="48" pX="0" pY="0"/>
+    <sprite n="EnemyWalk2.png" x="96" y="144" w="48" h="48" pX="0" pY="0"/>
 </TextureAtlas>

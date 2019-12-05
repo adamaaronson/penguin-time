@@ -52,11 +52,11 @@ void Player::jump() {
     }
 }
 
-void Player::collideAll(std::vector<Block> blocks) {
+void Player::collideAll(std::vector<Block*> blocks) {
     double xShift = 0;
     double yShift = 0;
-    for (Block &block : blocks) {
-        ofRectangle bRect = block.getRect();
+    for (Block* block : blocks) {
+        ofRectangle bRect = block->getRect();
         double xDist = (rect.x + rect.width / 2) - (bRect.x + bRect.width / 2);
         double yDist = (rect.y + rect.height / 2) - (bRect.y + bRect.height / 2);
         
@@ -64,7 +64,7 @@ void Player::collideAll(std::vector<Block> blocks) {
         double halfHeights = rect.height / 2 + bRect.height / 2;
         
         if (std::abs(xDist) < halfWidths && std::abs(yDist) < halfHeights) {
-            if (block.getType() == DEATH) {
+            if (block->getType() == DEATH) {
                 xShift = 0;
                 yShift = 0;
                 kaput = true;

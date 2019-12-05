@@ -17,11 +17,12 @@
 enum BlockType {
     AIR,
     GROUND,
-    DEATH
+    DEATH,
+    ENEMY
 };
 
 class Block {
-private:
+protected:
     ofRectangle rect;
     ofColor color;
     BlockType type;
@@ -33,6 +34,7 @@ public:
     Block(double x, double y, double width, double height, BlockType type_, bool top_);
     
     void draw();
+    void update() {};
     
     ofRectangle getRect() const;
     ofColor getColor() const;

@@ -45,4 +45,5 @@ class ofApp : public ofBaseApp {
     
     ofxTPAnimatedSpritePtr playerLeftWalk;
     ofxTPAnimatedSpritePtr playerRightWalk;
+    ofxTPAnimatedSpritePtr enemyWalk;
 };
