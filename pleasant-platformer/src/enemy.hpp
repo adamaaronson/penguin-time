@@ -13,7 +13,7 @@
 #include "block.hpp"
 #include "player.hpp"
 
-#define DEFAULT_ENEMY_VEL DEFAULT_WALK_VEL
+#define DEFAULT_ENEMY_VEL DEFAULT_WALK_VEL / 2
 
 class Enemy : public Block {
 private:
@@ -24,7 +24,7 @@ private:
 public:
     Enemy(double x, double y, double width, double height, double distance_);
     
-    void update();
+    void update() override;
 };
 
 #endif /* enemy_hpp */

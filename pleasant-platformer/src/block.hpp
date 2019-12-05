@@ -34,7 +34,7 @@ public:
     Block(double x, double y, double width, double height, BlockType type_, bool top_);
     
     void draw();
-    void update() {};
+    virtual void update() {};
     
     ofRectangle getRect() const;
     ofColor getColor() const;

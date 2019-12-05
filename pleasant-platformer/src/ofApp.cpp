@@ -15,7 +15,7 @@ void ofApp::setup(){
     // load sprites
     
     spritesheet = ofxTexturePackerPtr(new ofxTexturePacker());
-    spritesheet->load("/Users/adamaaronson/Documents/UIUC/CS126/fantastic-finale-adamaaronson/pleasant-platformer/src/spritesheet.xml");
+    spritesheet->load("../../src/spritesheet.xml");
     
     groundTop = spritesheet->getSprite("GroundTop");
     groundBottom = spritesheet->getSprite("GroundBottom");
@@ -111,8 +111,8 @@ void ofApp::update(){
         enemyWalk->update();
     }
     
-    for (Block* b : thisLevel.blocks) {
-        b->update();
+    for (int i = 0; i < thisLevel.blocks.size(); i++) {
+        thisLevel.blocks[i]->update();
     }
 }
 
