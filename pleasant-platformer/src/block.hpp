@@ -18,7 +18,8 @@ enum BlockType {
     AIR,
     GROUND,
     DEATH,
-    ENEMY
+    ENEMY,
+    PORTAL
 };
 
 class Block {

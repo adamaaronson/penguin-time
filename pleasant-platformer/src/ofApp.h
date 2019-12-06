@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "player.hpp"
 #include "block.hpp"
+#include "enemy.hpp"
 #include "level.hpp"
 #include "ofxTexturePacker.h"
 
@@ -46,4 +47,5 @@ class ofApp : public ofBaseApp {
     ofxTPAnimatedSpritePtr playerLeftWalk;
     ofxTPAnimatedSpritePtr playerRightWalk;
     ofxTPAnimatedSpritePtr enemyWalk;
+    ofxTPAnimatedSpritePtr portal;
 };

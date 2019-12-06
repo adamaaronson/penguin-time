@@ -7,6 +7,7 @@
 #define PLAYER_COLOR ofColor::steelBlue
 #define BLOCK_COLOR ofColor::black
 #define WADDLE_SPEED 10
+#define PORTAL_SPEED 15
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -48,6 +49,15 @@ void ofApp::setup(){
     } else {
         ofLog(OF_LOG_FATAL_ERROR, "ofApp::setup():: Could not load animated sprite");
     }
+    portal = spritesheet->getAnimatedSprite("Portal");
+    if (portal != NULL) {
+        portal->setSpeed(PORTAL_SPEED);
+        portal->play();
+    } else {
+        ofLog(OF_LOG_FATAL_ERROR, "ofApp::setup():: Could not load animated sprite");
+    }
+    
+    // create levels
     
     int gridSize = DEFAULT_BLOCK_WIDTH;
     double blockChance = 0.3;
@@ -71,6 +81,7 @@ void ofApp::setup(){
             }
         }
     }
+    blockTypes[1][1] = PORTAL;
     
     for (int col = 0; col < DEFAULT_LEVEL_WIDTH; col++) {
         blockTypes[DEFAULT_LEVEL_HEIGHT - 1][col] = GROUND;
@@ -111,8 +122,12 @@ void ofApp::update(){
         enemyWalk->update();
     }
     
-    for (int i = 0; i < thisLevel.blocks.size(); i++) {
-        thisLevel.blocks[i]->update();
+    if (portal) {
+        portal->update();
+    }
+    
+    for (Block* b : thisLevel.blocks) {
+        b->update();
     }
 }
 
@@ -159,6 +174,8 @@ void ofApp::draw(){
             }
         } else if (bType == ENEMY) {
             enemyWalk->draw(bRect.x, bRect.y);
+        } else if (bType == PORTAL) {
+            portal->draw(bRect.x, bRect.y);
         }
     }
 }

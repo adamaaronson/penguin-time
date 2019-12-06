@@ -50,7 +50,9 @@ public:
     bool movingRight = false;
     bool facingRight = true;
     bool grounded = true;
+    
     bool kaput = false;
+    bool atPortal = false;
     
     double walkVel = DEFAULT_WALK_VEL;
     double jumpVel = DEFAULT_JUMP_VEL;

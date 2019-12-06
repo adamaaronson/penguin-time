@@ -70,6 +70,11 @@ void Player::collideAll(std::vector<Block*> blocks) {
                 yShift = 0;
                 kaput = true;
                 break;
+            } else if (bType == PORTAL) {
+                xShift = 0;
+                yShift = 0;
+                atPortal = true;
+                break;
             }
             double xOverlap = halfWidths - std::abs(xDist);
             double yOverlap = halfHeights - std::abs(yDist);
