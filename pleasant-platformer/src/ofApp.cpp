@@ -7,10 +7,11 @@
 #define PLAYER_COLOR ofColor::steelBlue
 #define BLOCK_COLOR ofColor::black
 #define WADDLE_SPEED 10
-#define PORTAL_SPEED 15
+#define PORTAL_SPEED 10
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+    ofSetWindowTitle("Desert Dash");
     ofSetBackgroundColor(ofColor(160,205,220));
     
     // load sprites
@@ -81,7 +82,7 @@ void ofApp::setup(){
             }
         }
     }
-    blockTypes[1][1] = PORTAL;
+    blockTypes[5][5] = PORTAL;
     
     for (int col = 0; col < DEFAULT_LEVEL_WIDTH; col++) {
         blockTypes[DEFAULT_LEVEL_HEIGHT - 1][col] = GROUND;
@@ -133,6 +134,30 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+    // draw blocks
+    for (Block* b : levels[currentLevel].blocks) {
+        BlockType bType = b->getType();
+        bool bTop = b->isTop();
+        ofRectangle bRect = b->getRect();
+        if (bType == GROUND) {
+            if (bTop) {
+                groundTop->draw(bRect.x, bRect.y);
+            } else {
+                groundBottom->draw(bRect.x, bRect.y);
+            }
+        } else if (bType == DEATH) {
+            if (bTop) {
+                deathTop->draw(bRect.x - PIXEL_SIZE, bRect.y - PIXEL_SIZE);
+            } else {
+                deathBottom->draw(bRect.x - PIXEL_SIZE, bRect.y - PIXEL_SIZE);
+            }
+        } else if (bType == ENEMY) {
+            enemyWalk->draw(bRect.x - PIXEL_SIZE, bRect.y - PIXEL_SIZE);
+        } else if (bType == PORTAL) {
+            portal->draw(bRect.x - DEFAULT_BLOCK_WIDTH / 3, bRect.y - DEFAULT_BLOCK_WIDTH / 3);
+        }
+    }
+    
     // draw player
     float playerX = player.getRect().x;
     float playerY = player.getRect().y;
@@ -152,30 +177,6 @@ void ofApp::draw(){
             playerRightStand->draw(playerX, playerY);
         } else {
             playerLeftStand->draw(playerX, playerY);
-        }
-    }
-    
-    
-    for (Block* b : levels[currentLevel].blocks) {
-        BlockType bType = b->getType();
-        bool bTop = b->isTop();
-        ofRectangle bRect = b->getRect();
-        if (bType == GROUND) {
-            if (bTop) {
-                groundTop->draw(bRect.x, bRect.y);
-            } else {
-                groundBottom->draw(bRect.x, bRect.y);
-            }
-        } else if (bType == DEATH) {
-            if (bTop) {
-                deathTop->draw(bRect.x, bRect.y);
-            } else {
-                deathBottom->draw(bRect.x, bRect.y);
-            }
-        } else if (bType == ENEMY) {
-            enemyWalk->draw(bRect.x, bRect.y);
-        } else if (bType == PORTAL) {
-            portal->draw(bRect.x, bRect.y);
         }
     }
 }

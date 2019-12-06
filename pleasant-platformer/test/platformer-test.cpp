@@ -6,3 +6,9 @@
 //
 
 #include <stdio.h>
+#include "catch.hpp"
+#include "../src/ofApp.h"
+
+TEST_CASE("Test test") {
+    REQUIRE(1 == 1);
+}
