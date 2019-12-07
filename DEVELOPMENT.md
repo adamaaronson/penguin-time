@@ -8,9 +8,14 @@
 - **11/19/19** Fixed a bunch of issues with collision detection and player control
 - **11/20/19** Finalized collision detection and tested with various player sizes and worlds
 
-### **Thanksgiving / Week 2**
+### **Week 2/3**
 
 - **Thanksgiving Break** Decided on desert theme
 - **12/02/19** Created sprites for penguin, sand, and cacti
 - **12/03/19** Added ofxTexturePacker addon, created spritesheet XML, and implemented different types of blocks
 - **12/04/19** Added different blocks to display and implemented death and respawning
+
+### **Week 4**
+
+- **12/05/19** Added enemies, including their sprites, animations, and functionality
+- **12/06/19** Implemented portals, paving way for level design
