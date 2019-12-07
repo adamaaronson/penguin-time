@@ -1,3 +1,4 @@
 ofxPoco
 ofxTexturePacker
+ofxUnitTests
 ofxXmlSettings
