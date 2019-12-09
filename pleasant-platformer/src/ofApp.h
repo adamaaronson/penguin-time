@@ -11,6 +11,7 @@ class ofApp : public ofBaseApp {
     Player player;
     std::vector<Level> levels;
     int currentLevel = 0;
+    double timer = 0;
     
     int width = ofGetWidth();
     int height = ofGetHeight();
@@ -36,6 +37,9 @@ class ofApp : public ofBaseApp {
         void gotMessage(ofMessage msg);
     
     ofImage sky;
+    
+    ofTrueTypeFont bigFont;
+    ofTrueTypeFont littleFont;
     
     ofxTexturePackerPtr spritesheet;
     

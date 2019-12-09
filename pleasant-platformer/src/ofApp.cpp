@@ -18,6 +18,8 @@ void ofApp::setup(){
     // load sprites
     
     sky.load("../../src/sky.png");
+    bigFont.load("../../src/din.ttf", 24);
+    littleFont.load("../../src/din.ttf", 12);
     
     spritesheet = ofxTexturePackerPtr(new ofxTexturePacker());
     spritesheet->load("../../src/spritesheet.xml");
@@ -115,6 +117,10 @@ void ofApp::update(){
     for (Block* b : thisLevel.blocks) {
         b->update();
     }
+    
+    if (ofGetFrameRate() > 1) {
+        timer += 1/ofGetFrameRate();
+    }
 }
 
 //--------------------------------------------------------------
@@ -178,6 +184,14 @@ void ofApp::draw(){
     }
     
     // draw data overlay
+    ofSetColor(255, 255, 255, 150);
+    ofDrawRectangle(20, 20, 300, 56);
+    
+    ofSetColor(ofColor::black);
+    bigFont.drawString("LEVEL " + std::to_string(currentLevel + 1), 32, 60);
+    littleFont.drawString(("DEATHS: " + std::to_string(player.deaths) + "\nTIME: " + std::to_string(round(timer * 100.0) / 100.0)), 150, 42);
+    
+    ofSetColor(255, 255, 255);
 }
 
 //--------------------------------------------------------------

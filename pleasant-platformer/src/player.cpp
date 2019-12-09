@@ -69,6 +69,7 @@ void Player::collideAll(std::vector<Block*> blocks) {
                 xShift = 0;
                 yShift = 0;
                 kaput = true;
+                deaths++;
                 break;
             } else if (bType == PORTAL) {
                 xShift = 0;

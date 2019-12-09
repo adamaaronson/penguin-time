@@ -52,6 +52,7 @@ public:
     bool grounded = true;
     
     bool kaput = true;
+    int deaths = 0;
     bool atPortal = false;
     
     double walkVel = DEFAULT_WALK_VEL;
