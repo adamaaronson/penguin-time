@@ -12,7 +12,7 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-    ofSetWindowTitle("Desert Dash");
+    ofSetWindowTitle("Penguin Time");
     ofSetBackgroundColor(ofColor(160,205,220));
     
     // load sprites
