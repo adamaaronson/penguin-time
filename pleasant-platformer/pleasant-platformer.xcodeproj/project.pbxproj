@@ -149,6 +149,7 @@
 		A3F7576F239C682100EEE592 /* tests-main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "tests-main.cpp"; sourceTree = "<group>"; };
 		A3F75771239C686F00EEE592 /* catch.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = catch.hpp; sourceTree = "<group>"; };
 		A3F75772239C68CC00EEE592 /* platformer-tests.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "platformer-tests.cpp"; sourceTree = "<group>"; };
+		A3F75775239DCC7400EEE592 /* testlevels.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = testlevels.txt; sourceTree = "<group>"; };
 		AC4504405135969DE127001F /* asn1t.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = asn1t.h; path = ../../../../../Downloads/of_v0.10.1_osx_release/addons/ofxPoco/libs/openssl/include/openssl/asn1t.h; sourceTree = SOURCE_ROOT; };
 		AE592C9A47327EC371323292 /* ofxXmlPoco.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxXmlPoco.h; path = ../../../../../Downloads/of_v0.10.1_osx_release/addons/ofxPoco/src/ofxXmlPoco.h; sourceTree = SOURCE_ROOT; };
 		B2E03007B53513538E586F64 /* bio.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = bio.h; path = ../../../../../Downloads/of_v0.10.1_osx_release/addons/ofxPoco/libs/openssl/include/openssl/bio.h; sourceTree = SOURCE_ROOT; };
@@ -574,6 +575,7 @@
 				A3F7576F239C682100EEE592 /* tests-main.cpp */,
 				A3F75771239C686F00EEE592 /* catch.hpp */,
 				A3F75772239C68CC00EEE592 /* platformer-tests.cpp */,
+				A3F75775239DCC7400EEE592 /* testlevels.txt */,
 			);
 			path = tests;
 			sourceTree = "<group>";

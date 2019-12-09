@@ -46,3 +46,85 @@ Level::Level(ofVec2f startingPoint_, std::vector<std::vector<BlockType>> blockTy
        }
     }
 }
+
+Level Level::GenerateLevel(std::vector<std::string> grid, std::vector<double> enemyDistances) {
+    ofVec2f startingPoint = ofVec2f(0, 0);
+    std::vector<std::vector<BlockType>> blockTypes;
+    for (int row = 0; row < grid.size(); row++) {
+        blockTypes.emplace_back();
+        for (int col = 0; col < grid[row].size(); col++) {
+            char c = grid[row][col];
+            if (c == START_CHAR) {
+                startingPoint = ofVec2f(col, row);
+            } else if (c == GROUND_CHAR) {
+                blockTypes.back().push_back(GROUND);
+            } else if (c == DEATH_CHAR) {
+                blockTypes.back().push_back(DEATH);
+            } else if (c == ENEMY_CHAR) {
+                blockTypes.back().push_back(ENEMY);
+            } else if (c == PORTAL_CHAR) {
+                blockTypes.back().push_back(PORTAL);
+            } else {
+                blockTypes.back().push_back(AIR);
+            }
+        }
+    }
+    return Level(startingPoint, blockTypes, enemyDistances);
+}
+
+// split helper method courtesy of StackOverflow
+// https://stackoverflow.com/a/236803
+template <typename Out>
+void split(const std::string &s, char delim, Out result) {
+    std::istringstream iss(s);
+    std::string item;
+    while (std::getline(iss, item, delim)) {
+        *result++ = item;
+    }
+}
+std::vector<std::string> split(const std::string &s, char delim) {
+    std::vector<std::string> elems;
+    split(s, delim, std::back_inserter(elems));
+    return elems;
+}
+
+std::vector<Level> Level::GenerateLevels(std::vector<std::string> grids) {
+    int levelLines = DEFAULT_LEVEL_HEIGHT + 1;
+    if (grids.size() % levelLines != 0) {
+        ofLog(OF_LOG_FATAL_ERROR, "Level::GenerateLevels: Improper input, invalid number of rows");
+    }
+    
+    std::vector<Level> levels;
+    
+    for (int level = 0; level < grids.size() / levelLines; level++) {
+        std::vector<std::string>::const_iterator first = grids.begin() + level * levelLines;
+        std::vector<std::string>::const_iterator last = grids.begin() + (level + 1) * levelLines - 1;
+        std::vector<std::string> grid(first, last);
+        
+        std::vector<std::string> enemyDistanceStrings = split(grids[(level + 1) * levelLines - 1], DISTANCE_DELIM);
+        std::vector<double> enemyDistances;
+        for (std::string s : enemyDistanceStrings) {
+            enemyDistances.push_back(stod(s) * DEFAULT_BLOCK_WIDTH);
+        }
+        levels.push_back(GenerateLevel(grid, enemyDistances));
+    }
+    
+    return levels;
+}
+
+std::vector<std::string> Level::ReadLines(const std::string &filepath) {
+    std::ifstream ifs(filepath);
+    std::vector<std::string> lines;
+
+    if (!ifs) {
+        throw std::exception();
+    } else {
+        for (std::string line; std::getline(ifs, line);) {
+            lines.push_back(line);
+        }
+    }
+
+    return lines;
+}
+
+

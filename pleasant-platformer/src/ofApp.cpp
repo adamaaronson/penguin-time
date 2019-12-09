@@ -62,8 +62,8 @@ void ofApp::setup(){
     
     int gridSize = DEFAULT_BLOCK_WIDTH;
     double blockChance = 0.3;
-    double deathChance = 0.1;
-    double enemyChance = 0.04;
+    double deathChance = 0.08;
+    double enemyChance = 0.03;
     
     std::vector<double> enemyDistances;
     std::vector<std::vector<BlockType>> blockTypes;
