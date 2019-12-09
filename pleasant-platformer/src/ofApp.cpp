@@ -17,6 +17,8 @@ void ofApp::setup(){
     
     // load sprites
     
+    sky.load("../../src/sky.png");
+    
     spritesheet = ofxTexturePackerPtr(new ofxTexturePacker());
     spritesheet->load("../../src/spritesheet.xml");
     
@@ -120,6 +122,14 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
     Level thisLevel = levels[currentLevel];
+    
+    int bgSize = 4;
+    // draw background
+    for (int x = 0; x < DEFAULT_LEVEL_WIDTH / bgSize; x++) {
+        for (int y = 0; y < DEFAULT_LEVEL_HEIGHT / bgSize; y++) {
+            sky.draw(x * DEFAULT_BLOCK_WIDTH * bgSize, y * DEFAULT_BLOCK_HEIGHT * bgSize);
+        }
+    }
     
     // draw blocks
     for (Block* b : thisLevel.blocks) {
