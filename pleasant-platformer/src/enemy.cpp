@@ -15,6 +15,10 @@ Enemy::Enemy(double x, double y, double width, double height, double distance_)
     xVel = DEFAULT_ENEMY_VEL;
 }
 
+double Enemy::getDistance() {
+    return distance;
+}
+
 void Enemy::update() {
     if (movingRight) {
         rect.translate(xVel, 0);

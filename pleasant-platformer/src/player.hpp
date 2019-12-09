@@ -51,7 +51,7 @@ public:
     bool facingRight = true;
     bool grounded = true;
     
-    bool kaput = false;
+    bool kaput = true;
     bool atPortal = false;
     
     double walkVel = DEFAULT_WALK_VEL;

@@ -3,6 +3,7 @@
 #define LEFT OF_KEY_LEFT
 #define RIGHT OF_KEY_RIGHT
 #define JUMP OF_KEY_UP
+#define RESET 'r'
 
 #define PLAYER_COLOR ofColor::steelBlue
 #define BLOCK_COLOR ofColor::black
@@ -60,53 +61,37 @@ void ofApp::setup(){
     
     // create levels
     
-    int gridSize = DEFAULT_BLOCK_WIDTH;
-    double blockChance = 0.3;
-    double deathChance = 0.08;
-    double enemyChance = 0.03;
+    std::string levelFile = "../../src/levels.txt";
     
-    std::vector<double> enemyDistances;
-    std::vector<std::vector<BlockType>> blockTypes;
-    for (int row = 0; row < DEFAULT_LEVEL_HEIGHT; row++) {
-        blockTypes.emplace_back();
-        for (int col = 0; col < DEFAULT_LEVEL_WIDTH; col++) {
-            if (ofRandom(1) < enemyChance) {
-                blockTypes[row].push_back(ENEMY);
-                enemyDistances.push_back(3 * gridSize);
-            } else if (ofRandom(1) < deathChance) {
-                blockTypes[row].push_back(DEATH);
-            } else if (ofRandom(1) < blockChance) {
-                blockTypes[row].push_back(GROUND);
-            } else {
-                blockTypes[row].push_back(AIR);
-            }
-        }
-    }
-    blockTypes[5][5] = PORTAL;
-    
-    for (int col = 0; col < DEFAULT_LEVEL_WIDTH; col++) {
-        blockTypes[DEFAULT_LEVEL_HEIGHT - 1][col] = GROUND;
-    }
-    
-    float startingX = gridSize * (int) ofRandom(DEFAULT_LEVEL_WIDTH);
-    float startingY = gridSize * (int) ofRandom(DEFAULT_LEVEL_HEIGHT - 2);
-    
-    player = Player(startingX, startingY, gridSize, gridSize, PLAYER_COLOR);
-    
-    levels.emplace_back(ofVec2f(startingX, startingY), blockTypes, enemyDistances);
+    levels = Level::GenerateLevels(Level::ReadLines(levelFile));
+    std::cout << "levels: " << levels.size() << std::endl;
+    std::cout << ((Enemy*) (levels[1].blocks[5]))->getDistance() << std::endl;
+    double startingX = levels[currentLevel].startingPoint.x;
+    double startingY = levels[currentLevel].startingPoint.y;
+    player = Player(startingX, startingY, DEFAULT_BLOCK_WIDTH, DEFAULT_BLOCK_WIDTH, PLAYER_COLOR);
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
     Level thisLevel = levels[currentLevel];
     
-    player.update();
-    player.collideAll(thisLevel.blocks);
-    
     if (player.kaput) {
         player.moveTo(thisLevel.startingPoint);
         player.yVel = 0;
         player.kaput = false;
+    }
+    
+    player.update();
+    player.collideAll(thisLevel.blocks);
+    
+    if (player.atPortal) {
+        if (currentLevel < levels.size() - 1) {
+            currentLevel++;
+        } else {
+            gameFinished = true;
+        }
+        player.kaput = true;
+        player.atPortal = false;
     }
     
     if (player.movingRight) {
@@ -134,8 +119,10 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+    Level thisLevel = levels[currentLevel];
+    
     // draw blocks
-    for (Block* b : levels[currentLevel].blocks) {
+    for (Block* b : thisLevel.blocks) {
         BlockType bType = b->getType();
         bool bTop = b->isTop();
         ofRectangle bRect = b->getRect();
@@ -193,9 +180,8 @@ void ofApp::keyPressed(int key){
         player.xVel = player.walkVel;
     } else if (key == JUMP) {
         player.jump();
-    } else if (key == 32) {
-        setup();
-        currentLevel++;
+    } else if (key == RESET) {
+        player.kaput = true;
     }
 }
 

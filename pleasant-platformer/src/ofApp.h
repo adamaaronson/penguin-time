@@ -14,6 +14,9 @@ class ofApp : public ofBaseApp {
     
     int width = ofGetWidth();
     int height = ofGetHeight();
+    
+    bool gameStarted = true;
+    bool gameFinished = false;
 
     public:
         void setup();

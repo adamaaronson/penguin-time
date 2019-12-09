@@ -45,6 +45,17 @@ Level::Level(ofVec2f startingPoint_, std::vector<std::vector<BlockType>> blockTy
             
        }
     }
+    
+    blocks.push_back(new Block(-DEFAULT_BLOCK_WIDTH,
+                               -DEFAULT_LEVEL_HEIGHT * DEFAULT_BLOCK_HEIGHT,
+                               DEFAULT_BLOCK_WIDTH,
+                               2 * DEFAULT_LEVEL_HEIGHT * DEFAULT_BLOCK_HEIGHT,
+                               GROUND, false));
+    blocks.push_back(new Block(DEFAULT_LEVEL_WIDTH * DEFAULT_BLOCK_WIDTH,
+                               -DEFAULT_LEVEL_HEIGHT * DEFAULT_BLOCK_HEIGHT,
+                               DEFAULT_BLOCK_WIDTH,
+                               2 * DEFAULT_LEVEL_HEIGHT * DEFAULT_BLOCK_HEIGHT,
+                               GROUND, false));
 }
 
 Level Level::GenerateLevel(std::vector<std::string> grid, std::vector<double> enemyDistances) {
@@ -55,7 +66,8 @@ Level Level::GenerateLevel(std::vector<std::string> grid, std::vector<double> en
         for (int col = 0; col < grid[row].size(); col++) {
             char c = grid[row][col];
             if (c == START_CHAR) {
-                startingPoint = ofVec2f(col, row);
+                startingPoint = ofVec2f(DEFAULT_BLOCK_HEIGHT * col, DEFAULT_BLOCK_WIDTH * row);
+                blockTypes.back().push_back(AIR);
             } else if (c == GROUND_CHAR) {
                 blockTypes.back().push_back(GROUND);
             } else if (c == DEATH_CHAR) {
@@ -113,17 +125,11 @@ std::vector<Level> Level::GenerateLevels(std::vector<std::string> grids) {
 }
 
 std::vector<std::string> Level::ReadLines(const std::string &filepath) {
-    std::ifstream ifs(filepath);
     std::vector<std::string> lines;
-
-    if (!ifs) {
-        throw std::exception();
-    } else {
-        for (std::string line; std::getline(ifs, line);) {
-            lines.push_back(line);
-        }
+    ofBuffer buffer = ofBufferFromFile(filepath);
+    for (auto line : buffer.getLines()) {
+        lines.push_back(line);
     }
-
     return lines;
 }
 

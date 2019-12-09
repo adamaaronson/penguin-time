@@ -24,6 +24,8 @@ private:
 public:
     Enemy(double x, double y, double width, double height, double distance_);
     
+    double getDistance();
+    
     void update() override;
 };
 
