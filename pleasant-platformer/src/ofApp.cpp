@@ -66,8 +66,6 @@ void ofApp::setup(){
     std::string levelFile = "../../src/levels.txt";
     
     levels = Level::GenerateLevels(Level::ReadLines(levelFile));
-    std::cout << "levels: " << levels.size() << std::endl;
-    std::cout << ((Enemy*) (levels[1].blocks[5]))->getDistance() << std::endl;
     double startingX = levels[currentLevel].startingPoint.x;
     double startingY = levels[currentLevel].startingPoint.y;
     player = Player(startingX, startingY, DEFAULT_BLOCK_WIDTH, DEFAULT_BLOCK_WIDTH, PLAYER_COLOR);
@@ -123,11 +121,13 @@ void ofApp::update(){
 void ofApp::draw(){
     Level thisLevel = levels[currentLevel];
     
-    int bgSize = 4;
     // draw background
-    for (int x = 0; x < DEFAULT_LEVEL_WIDTH / bgSize; x++) {
-        for (int y = 0; y < DEFAULT_LEVEL_HEIGHT / bgSize; y++) {
-            sky.draw(x * DEFAULT_BLOCK_WIDTH * bgSize, y * DEFAULT_BLOCK_HEIGHT * bgSize);
+    int bgSize = 4;
+    int offset = currentLevel % bgSize;
+    for (int x = -1; x <= DEFAULT_LEVEL_WIDTH / bgSize; x++) {
+        for (int y = -1; y <= DEFAULT_LEVEL_HEIGHT / bgSize; y++) {
+            sky.draw(x * DEFAULT_BLOCK_WIDTH * bgSize + offset * DEFAULT_BLOCK_WIDTH,
+                     y * DEFAULT_BLOCK_HEIGHT * bgSize + offset * DEFAULT_BLOCK_HEIGHT);
         }
     }
     
@@ -176,6 +176,8 @@ void ofApp::draw(){
             playerLeftStand->draw(playerX, playerY);
         }
     }
+    
+    // draw data overlay
 }
 
 //--------------------------------------------------------------
