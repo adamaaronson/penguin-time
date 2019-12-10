@@ -138,8 +138,8 @@
 		9A88E5B739CD5CAA3B062DDB /* ofxTPTypes.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxTPTypes.h; path = ../../../../../Downloads/of_v0.10.1_osx_release/addons/ofxTexturePacker/src/ofxTPTypes.h; sourceTree = SOURCE_ROOT; };
 		9CE2D13146B6D4122F249FF9 /* objects.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = objects.h; path = ../../../../../Downloads/of_v0.10.1_osx_release/addons/ofxPoco/libs/openssl/include/openssl/objects.h; sourceTree = SOURCE_ROOT; };
 		A341129E0AAFF0E6EB9AB5D6 /* safestack.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = safestack.h; path = ../../../../../Downloads/of_v0.10.1_osx_release/addons/ofxPoco/libs/openssl/include/openssl/safestack.h; sourceTree = SOURCE_ROOT; };
-		A3F7576C239C67AF00EEE592 /* pleasant-platformer-tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "pleasant-platformer-tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A3F7576D239C67AF00EEE592 /* pleasant-platformer copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "pleasant-platformer copy-Info.plist"; path = "/Users/adamaaronson/Documents/UIUC/CS126/fantastic-finale-adamaaronson/pleasant-platformer/pleasant-platformer copy-Info.plist"; sourceTree = "<absolute>"; };
+		A3F7576C239C67AF00EEE592 /* penguin-time-tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "penguin-time-tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3F7576D239C67AF00EEE592 /* penguin-time copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "penguin-time copy-Info.plist"; sourceTree = "<group>"; };
 		A3F7576F239C682100EEE592 /* tests-main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "tests-main.cpp"; sourceTree = "<group>"; };
 		A3F75771239C686F00EEE592 /* catch.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = catch.hpp; sourceTree = "<group>"; };
 		A3F75772239C68CC00EEE592 /* platformer-tests.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "platformer-tests.cpp"; sourceTree = "<group>"; };
@@ -339,7 +339,7 @@
 		E42963712163EDD300A6A9E2 /* ofFmodSoundPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ofFmodSoundPlayer.h; path = ../../../../../Downloads/of_v0.10.1_osx_release/libs/openFrameworks/sound/ofFmodSoundPlayer.h; sourceTree = SOURCE_ROOT; };
 		E42963722163EDD300A6A9E2 /* ofSoundBuffer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ofSoundBuffer.cpp; path = ../../../../../Downloads/of_v0.10.1_osx_release/libs/openFrameworks/sound/ofSoundBuffer.cpp; sourceTree = SOURCE_ROOT; };
 		E42963732163EDD300A6A9E2 /* ofSoundBaseTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ofSoundBaseTypes.h; path = ../../../../../Downloads/of_v0.10.1_osx_release/libs/openFrameworks/sound/ofSoundBaseTypes.h; sourceTree = SOURCE_ROOT; };
-		E4B69B5B0A3A1756003C02F2 /* pleasant-platformerDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "pleasant-platformerDebug.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4B69B5B0A3A1756003C02F2 /* penguin-timeDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "penguin-timeDebug.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4B69E1D0A3A1BDC003C02F2 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = src/main.cpp; sourceTree = SOURCE_ROOT; };
 		E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ofApp.cpp; path = src/ofApp.cpp; sourceTree = SOURCE_ROOT; };
 		E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofApp.h; path = src/ofApp.h; sourceTree = SOURCE_ROOT; };
@@ -895,9 +895,9 @@
 				E42962AA2163EDD300A6A9E2 /* openFrameworks */,
 				BB4B014C10F69532006C3DED /* addons */,
 				6948EE371B920CB800B5AC1A /* local_addons */,
-				E4B69B5B0A3A1756003C02F2 /* pleasant-platformerDebug.app */,
-				A3F7576C239C67AF00EEE592 /* pleasant-platformer-tests.app */,
-				A3F7576D239C67AF00EEE592 /* pleasant-platformer copy-Info.plist */,
+				E4B69B5B0A3A1756003C02F2 /* penguin-timeDebug.app */,
+				A3F7576C239C67AF00EEE592 /* penguin-time-tests.app */,
+				A3F7576D239C67AF00EEE592 /* penguin-time copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -924,9 +924,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A3F7574F239C67AF00EEE592 /* pleasant-platformer-tests */ = {
+		A3F7574F239C67AF00EEE592 /* penguin-time-tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A3F75768239C67AF00EEE592 /* Build configuration list for PBXNativeTarget "pleasant-platformer-tests" */;
+			buildConfigurationList = A3F75768239C67AF00EEE592 /* Build configuration list for PBXNativeTarget "penguin-time-tests" */;
 			buildPhases = (
 				A3F75750239C67AF00EEE592 /* ShellScript */,
 				A3F75751239C67AF00EEE592 /* Sources */,
@@ -939,14 +939,14 @@
 			);
 			dependencies = (
 			);
-			name = "pleasant-platformer-tests";
+			name = "penguin-time-tests";
 			productName = myOFApp;
-			productReference = A3F7576C239C67AF00EEE592 /* pleasant-platformer-tests.app */;
+			productReference = A3F7576C239C67AF00EEE592 /* penguin-time-tests.app */;
 			productType = "com.apple.product-type.application";
 		};
-		E4B69B5A0A3A1756003C02F2 /* pleasant-platformer */ = {
+		E4B69B5A0A3A1756003C02F2 /* penguin-time */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E4B69B5F0A3A1757003C02F2 /* Build configuration list for PBXNativeTarget "pleasant-platformer" */;
+			buildConfigurationList = E4B69B5F0A3A1757003C02F2 /* Build configuration list for PBXNativeTarget "penguin-time" */;
 			buildPhases = (
 				E42962A92163ECCD00A6A9E2 /* ShellScript */,
 				E4B69B580A3A1756003C02F2 /* Sources */,
@@ -959,9 +959,9 @@
 			);
 			dependencies = (
 			);
-			name = "pleasant-platformer";
+			name = "penguin-time";
 			productName = myOFApp;
-			productReference = E4B69B5B0A3A1756003C02F2 /* pleasant-platformerDebug.app */;
+			productReference = E4B69B5B0A3A1756003C02F2 /* penguin-timeDebug.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -972,7 +972,7 @@
 			attributes = {
 				LastUpgradeCheck = 0600;
 			};
-			buildConfigurationList = E4B69B4D0A3A1720003C02F2 /* Build configuration list for PBXProject "pleasant-platformer" */;
+			buildConfigurationList = E4B69B4D0A3A1720003C02F2 /* Build configuration list for PBXProject "penguin-time" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -987,8 +987,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E4B69B5A0A3A1756003C02F2 /* pleasant-platformer */,
-				A3F7574F239C67AF00EEE592 /* pleasant-platformer-tests */,
+				E4B69B5A0A3A1756003C02F2 /* penguin-time */,
+				A3F7574F239C67AF00EEE592 /* penguin-time-tests */,
 			);
 		};
 /* End PBXProject section */
@@ -1241,7 +1241,7 @@
 				);
 				ICON = "$(ICON_NAME_DEBUG)";
 				ICON_FILE = "$(ICON_FILE_PATH)$(ICON)";
-				INFOPLIST_FILE = "pleasant-platformer copy-Info.plist";
+				INFOPLIST_FILE = "penguin-time copy-Info.plist";
 				INSTALL_PATH = /Applications;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
@@ -1287,7 +1287,7 @@
 				);
 				ICON = "$(ICON_NAME_RELEASE)";
 				ICON_FILE = "$(ICON_FILE_PATH)$(ICON)";
-				INFOPLIST_FILE = "pleasant-platformer copy-Info.plist";
+				INFOPLIST_FILE = "penguin-time copy-Info.plist";
 				INSTALL_PATH = /Applications;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
@@ -1335,7 +1335,7 @@
 				);
 				ICON = "$(ICON_NAME_RELEASE)";
 				ICON_FILE = "$(ICON_FILE_PATH)$(ICON)";
-				INFOPLIST_FILE = "pleasant-platformer copy-Info.plist";
+				INFOPLIST_FILE = "penguin-time copy-Info.plist";
 				INSTALL_PATH = /Applications;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
@@ -1537,7 +1537,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A3F75768239C67AF00EEE592 /* Build configuration list for PBXNativeTarget "pleasant-platformer-tests" */ = {
+		A3F75768239C67AF00EEE592 /* Build configuration list for PBXNativeTarget "penguin-time-tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A3F75769239C67AF00EEE592 /* Debug */,
@@ -1547,7 +1547,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E4B69B4D0A3A1720003C02F2 /* Build configuration list for PBXProject "pleasant-platformer" */ = {
+		E4B69B4D0A3A1720003C02F2 /* Build configuration list for PBXProject "penguin-time" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E4B69B4E0A3A1720003C02F2 /* Debug */,
@@ -1557,7 +1557,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E4B69B5F0A3A1757003C02F2 /* Build configuration list for PBXNativeTarget "pleasant-platformer" */ = {
+		E4B69B5F0A3A1757003C02F2 /* Build configuration list for PBXNativeTarget "penguin-time" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E4B69B600A3A1757003C02F2 /* Debug */,
