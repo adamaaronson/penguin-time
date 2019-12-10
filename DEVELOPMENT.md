@@ -21,3 +21,4 @@
 - **12/06/19** Implemented portals, paving way for level design
 - **12/07/19** Added Catch2 for testing, it was a pain
 - **12/08/19** Created text-based level generation system, started creating levels
+- **12/09/19** Finished creating levels and added intro, outro, and music
