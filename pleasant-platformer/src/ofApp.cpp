@@ -6,11 +6,17 @@
 #define JUMP OF_KEY_UP
 #define RESET 'r'
 
+#define ALT_LEFT 'a'
+#define ALT_RIGHT 'd'
+#define ALT_JUMP 'w'
+
 #define PLAYER_COLOR ofColor::steelBlue
 #define BLOCK_COLOR ofColor::black
 #define OVERLAY_COLOR ofColor(255, 255, 255, 150)
 #define WADDLE_SPEED 10
 #define PORTAL_SPEED 10
+
+#define END_LEVEL 10
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -19,10 +25,14 @@ void ofApp::setup(){
     
     // load sprites
     
-    intro.load("../../src/resources/intro.png");
     sky.load("../../src/resources/sky.png");
-    bigFont.load("../../src/resources/din.ttf", 24);
+    intro.load("../../src/resources/intro.png");
+    outro.load("../../src/resources/outro.png");
+    
     littleFont.load("../../src/resources/din.ttf", 12);
+    bigFont.load("../../src/resources/din.ttf", 24);
+    
+    music.load("../../src/resources/penguintime.mp3");
     
     spritesheet = ofxTexturePackerPtr(new ofxTexturePacker());
     spritesheet->load("../../src/resources/spritesheet.xml");
@@ -31,6 +41,8 @@ void ofApp::setup(){
     groundBottom = spritesheet->getSprite("GroundBottom");
     deathTop = spritesheet->getSprite("DeathTop");
     deathBottom = spritesheet->getSprite("DeathBottom");
+    endGroundTop = spritesheet->getSprite("EndGroundTop");
+    endGroundBottom = spritesheet->getSprite("EndGroundBottom");
     
     playerRightStand = spritesheet->getSprite("PlayerRightStand");
     playerLeftStand = spritesheet->getSprite("PlayerLeftStand");
@@ -78,7 +90,10 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    if (gameStarted && !gameFinished) {
+    if (!music.isPlaying()) {
+        music.play();
+    }
+    if (gameStarted) {
         Level thisLevel = levels[currentLevel];
         
         if (player.kaput) {
@@ -93,8 +108,10 @@ void ofApp::update(){
         if (player.atPortal) {
             if (currentLevel < levels.size() - 1) {
                 currentLevel++;
-            } else {
+            }
+            if (currentLevel == END_LEVEL) {
                 gameFinished = true;
+                player.walkVel *= 2;
             }
             player.kaput = true;
             player.atPortal = false;
@@ -122,8 +139,10 @@ void ofApp::update(){
             b->update();
         }
         
-        if (ofGetFrameRate() > 1) {
-            timer += 1 / ofGetFrameRate();
+        if (!gameFinished) {
+            if (ofGetFrameRate() > 1) {
+                timer += 1 / ofGetFrameRate();
+            }
         }
     }
 }
@@ -142,13 +161,12 @@ void ofApp::draw(){
     
     if (!gameStarted) {
         // draw intro thing
-        
         ofSetColor(OVERLAY_COLOR);
         ofDrawRectangle(width/8, height/8, 3*width/4, 3*height/4);
         ofSetColor(ofColor::white);
         intro.draw(width/8, height/8);
         
-    } else if (!gameFinished) {
+    } else {
         Level thisLevel = levels[currentLevel];
         
         // draw blocks
@@ -158,9 +176,17 @@ void ofApp::draw(){
             ofRectangle bRect = b->getRect();
             if (bType == GROUND) {
                 if (bTop) {
-                    groundTop->draw(bRect.x, bRect.y);
+                    if (gameFinished) {
+                        endGroundTop->draw(bRect.x, bRect.y);
+                    } else {
+                        groundTop->draw(bRect.x, bRect.y);
+                    }
                 } else {
-                    groundBottom->draw(bRect.x, bRect.y);
+                    if (gameFinished) {
+                        endGroundBottom->draw(bRect.x, bRect.y);
+                    } else {
+                        groundBottom->draw(bRect.x, bRect.y);
+                    }
                 }
             } else if (bType == DEATH) {
                 if (bTop) {
@@ -196,22 +222,37 @@ void ofApp::draw(){
                 playerLeftStand->draw(playerX, playerY);
             }
         }
-        
-        // draw data overlay
+        if (!gameFinished) {
+            // draw data overlay
+            ofSetColor(OVERLAY_COLOR);
+            ofDrawRectangle(20, 20, 240, 56);
+            
+            ofSetColor(ofColor::black);
+            bigFont.drawString("LEVEL " + std::to_string(currentLevel + 1), 32, 60);
+            
+            stringstream time;
+            time << setprecision(floor(log10(timer)) + 3) << timer;
+            
+            littleFont.drawString("DEATHS: " + std::to_string(player.deaths) + "\nTIME: " + time.str(), 160, 44);
+            
+            ofSetColor(255, 255, 255);
+        }
+    }
+    
+    if (gameFinished) {
+        // draw outro thing
         ofSetColor(OVERLAY_COLOR);
-        ofDrawRectangle(20, 20, 240, 56);
-        
+        ofDrawRectangle(width/8, height/8, 3*width/4, 3*height/5);
         ofSetColor(ofColor::black);
-        bigFont.drawString("LEVEL " + std::to_string(currentLevel + 1), 32, 60);
+        outro.draw(width/8, height/8);
+        
+        bigFont.drawString("DEATHS: " + std::to_string(player.deaths), width * 0.3, height * 2/3);
         
         stringstream time;
         time << setprecision(floor(log10(timer)) + 3) << timer;
         
-        littleFont.drawString("DEATHS: " + std::to_string(player.deaths) + "\nTIME: " + time.str(), 160, 44);
-        
-        ofSetColor(255, 255, 255);
-    } else {
-        
+        bigFont.drawString("TIME: " + time.str(), width * 0.55, height * 2/3);
+        ofSetColor(ofColor::white);
     }
 }
 
@@ -219,16 +260,16 @@ void ofApp::draw(){
 void ofApp::keyPressed(int key){
     if (!gameStarted) {
         gameStarted = true;
-    } else if (!gameFinished) {
-        if (key == LEFT) {
+    } else {
+        if (key == LEFT || key == ALT_LEFT) {
             player.movingLeft = true;
             player.facingRight = false;
             player.xVel = -player.walkVel;
-        } else if (key == RIGHT) {
+        } else if (key == RIGHT || key == ALT_RIGHT) {
             player.movingRight = true;
             player.facingRight = true;
             player.xVel = player.walkVel;
-        } else if (key == JUMP) {
+        } else if (key == JUMP || key == ALT_JUMP) {
             player.jump();
         } else if (key == RESET) {
             player.kaput = true;
@@ -238,15 +279,15 @@ void ofApp::keyPressed(int key){
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
-    if (gameStarted && !gameFinished) {
-        if (key == LEFT) {
+    if (gameStarted) {
+        if (key == LEFT || key == ALT_LEFT) {
             player.movingLeft = false;
             if (player.movingRight) {
                 player.xVel = player.walkVel;
             } else {
                 player.xVel = 0;
             }
-        } else if (key == RIGHT) {
+        } else if (key == RIGHT || key == ALT_RIGHT) {
             player.movingRight = false;
             if (player.movingLeft) {
                 player.xVel = -player.walkVel;
@@ -289,8 +330,7 @@ void ofApp::mouseExited(int x, int y){
 
 //--------------------------------------------------------------
 void ofApp::windowResized(int w, int h){
-    ofSetWindowShape(DEFAULT_BLOCK_WIDTH * DEFAULT_LEVEL_WIDTH,
-                     DEFAULT_BLOCK_HEIGHT * DEFAULT_LEVEL_HEIGHT);
+    
 }
 
 //--------------------------------------------------------------

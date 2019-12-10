@@ -29,8 +29,10 @@ r => 'y' only set if sprite is rotated
     <sprite n="DeathBottom" x="96" y="96" w="48" h="48" pX="0" pY="0"/>
     <sprite n="DeathTop" x="144" y="96" w="48" h="48" pX="0" pY="0"/>
     <sprite n="EnemyStand" x="0" y="144" w="48" h="48" pX="0" pY="0"/>
-    <sprite n="EnemyWalk1.png" x="48" y="144" w="48" h="48" pX="0" pY="0"/>
-    <sprite n="EnemyWalk2.png" x="96" y="144" w="48" h="48" pX="0" pY="0"/>
+    <sprite n="EndGroundBottom" x="0" y="144" w="48" h="48" pX="0" pY="0"/>
+    <sprite n="EndGroundTop" x="48" y="144" w="48" h="48" pX="0" pY="0"/>
+    <sprite n="EnemyWalk1.png" x="96" y="144" w="48" h="48" pX="0" pY="0"/>
+    <sprite n="EnemyWalk2.png" x="144" y="144" w="48" h="48" pX="0" pY="0"/>
     <sprite n="Portal1.png" x="0" y="192" w="48" h="48" pX="0" pY="0"/>
     <sprite n="Portal2.png" x="48" y="192" w="48" h="48" pX="0" pY="0"/>
     <sprite n="Portal3.png" x="96" y="192" w="48" h="48" pX="0" pY="0"/>

@@ -38,6 +38,7 @@ class ofApp : public ofBaseApp {
     
     ofImage sky;
     ofImage intro;
+    ofImage outro;
     
     ofTrueTypeFont littleFont;
     ofTrueTypeFont bigFont;
@@ -48,6 +49,8 @@ class ofApp : public ofBaseApp {
     ofxTPSpritePtr groundTop;
     ofxTPSpritePtr deathBottom;
     ofxTPSpritePtr deathTop;
+    ofxTPSpritePtr endGroundBottom;
+    ofxTPSpritePtr endGroundTop;
     
     ofxTPSpritePtr playerLeftStand;
     ofxTPSpritePtr playerRightStand;
@@ -58,4 +61,6 @@ class ofApp : public ofBaseApp {
     ofxTPAnimatedSpritePtr playerRightWalk;
     ofxTPAnimatedSpritePtr enemyWalk;
     ofxTPAnimatedSpritePtr portal;
+    
+    ofSoundPlayer music;
 };

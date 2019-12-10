@@ -3,13 +3,14 @@
 
 //========================================================================
 int main( ){
-    ofSetupOpenGL(DEFAULT_BLOCK_WIDTH * DEFAULT_LEVEL_WIDTH,
-                  DEFAULT_BLOCK_HEIGHT * DEFAULT_LEVEL_HEIGHT,
-                  OF_WINDOW);            // <-------- setup the GL context
-
-    // this kicks off the running of my app
-    // can be OF_WINDOW or OF_FULLSCREEN
-    // pass in width and height too:
+    ofGLFWWindowSettings settings;
+    settings.setSize(DEFAULT_BLOCK_WIDTH * DEFAULT_LEVEL_WIDTH,
+                     DEFAULT_BLOCK_HEIGHT * DEFAULT_LEVEL_HEIGHT);
+    settings.resizable = false;
     
-    return ofRunApp(new ofApp());
+    shared_ptr<ofAppBaseWindow> window = ofCreateWindow(settings);
+    shared_ptr<ofApp> app(new ofApp());
+
+    ofRunApp(window, app);
+    ofRunMainLoop();
 }

@@ -11,7 +11,6 @@
 		1E230713BCF78CF4E1CAF7DB /* ofxTexturePacker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD8F900CA5841FD5EC4380E9 /* ofxTexturePacker.cpp */; };
 		3B66C98F9598AE986FECC30C /* ofxXmlPoco.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0545348D6ECDB0852ADF337C /* ofxXmlPoco.cpp */; };
 		504993B228A020D8B4C261A6 /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD14F2A4508B0E273D2CF740 /* tinyxml.cpp */; };
-		5C004656F738821C1CC188DA /* spritesheet.xml in Sources */ = {isa = PBXBuildFile; fileRef = 5B47026DB368638A55A67535 /* spritesheet.xml */; };
 		65FC2AEDC35966DB2D51C59F /* ofxTPLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC001F73DD347C32155FE5 /* ofxTPLoader.cpp */; };
 		684556CF651C68ED7502FB2F /* block.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F9E073E6D03C78F3528C896 /* block.cpp */; };
 		7F3C4B55309FD7CCE1C1F9B8 /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 161589B127423C3560CE8AD0 /* tinyxmlerror.cpp */; };
@@ -21,8 +20,6 @@
 		A3F75755239C67AF00EEE592 /* level.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C42981E365C09748A151A803 /* level.cpp */; };
 		A3F75756239C67AF00EEE592 /* block.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F9E073E6D03C78F3528C896 /* block.cpp */; };
 		A3F75757239C67AF00EEE592 /* enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90CC9900BE868EEF1A3CD6C1 /* enemy.cpp */; };
-		A3F75758239C67AF00EEE592 /* spritesheet.xml in Sources */ = {isa = PBXBuildFile; fileRef = 5B47026DB368638A55A67535 /* spritesheet.xml */; };
-		A3F75759239C67AF00EEE592 /* spritesheet.png in Sources */ = {isa = PBXBuildFile; fileRef = 53525A0127555430DE05796F /* spritesheet.png */; };
 		A3F7575A239C67AF00EEE592 /* ofxXmlPoco.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0545348D6ECDB0852ADF337C /* ofxXmlPoco.cpp */; };
 		A3F7575B239C67AF00EEE592 /* ofxTPAnimatedSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97186A51295EA0EEDD0B4A2A /* ofxTPAnimatedSprite.cpp */; };
 		A3F7575C239C67AF00EEE592 /* ofxTPLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CFC001F73DD347C32155FE5 /* ofxTPLoader.cpp */; };
@@ -36,7 +33,6 @@
 		A3F75770239C682100EEE592 /* tests-main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A3F7576F239C682100EEE592 /* tests-main.cpp */; };
 		A3F75773239C68CC00EEE592 /* platformer-tests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A3F75772239C68CC00EEE592 /* platformer-tests.cpp */; };
 		A3F75774239C6D8100EEE592 /* catch.hpp in Sources */ = {isa = PBXBuildFile; fileRef = A3F75771239C686F00EEE592 /* catch.hpp */; };
-		B045BB822A3C8252E49703A1 /* spritesheet.png in Sources */ = {isa = PBXBuildFile; fileRef = 53525A0127555430DE05796F /* spritesheet.png */; };
 		B495CE7AF1AC5848DDE0E1D7 /* ofxTPSpriteData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D73B8B6B514A2D1E63F3FDD /* ofxTPSpriteData.cpp */; };
 		B4BECFC1E68778F9B5F709E9 /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E01BC29D9657F5F91AD0C54 /* tinyxmlparser.cpp */; };
 		DFA4BA7429BB16DAE3A14D2A /* ofxTPAnimatedSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 97186A51295EA0EEDD0B4A2A /* ofxTPAnimatedSprite.cpp */; };
@@ -101,10 +97,8 @@
 		4D075BEEDA6ACC3B24D8BAED /* cms.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = cms.h; path = ../../../../../Downloads/of_v0.10.1_osx_release/addons/ofxPoco/libs/openssl/include/openssl/cms.h; sourceTree = SOURCE_ROOT; };
 		516E7C21D1A109B80435D446 /* ofxTPSprite.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ofxTPSprite.cpp; path = ../../../../../Downloads/of_v0.10.1_osx_release/addons/ofxTexturePacker/src/ofxTPSprite.cpp; sourceTree = SOURCE_ROOT; };
 		5279EF5551DAD04BC8C5E6F2 /* ssl.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ssl.h; path = ../../../../../Downloads/of_v0.10.1_osx_release/addons/ofxPoco/libs/openssl/include/openssl/ssl.h; sourceTree = SOURCE_ROOT; };
-		53525A0127555430DE05796F /* spritesheet.png */ = {isa = PBXFileReference; explicitFileType = file; fileEncoding = 4; name = spritesheet.png; path = src/spritesheet.png; sourceTree = SOURCE_ROOT; };
 		53FF27EC0FCB036E1B82F154 /* ts.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ts.h; path = ../../../../../Downloads/of_v0.10.1_osx_release/addons/ofxPoco/libs/openssl/include/openssl/ts.h; sourceTree = SOURCE_ROOT; };
 		54983D4578EFA12700F9EE3D /* mdc2.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = mdc2.h; path = ../../../../../Downloads/of_v0.10.1_osx_release/addons/ofxPoco/libs/openssl/include/openssl/mdc2.h; sourceTree = SOURCE_ROOT; };
-		5B47026DB368638A55A67535 /* spritesheet.xml */ = {isa = PBXFileReference; explicitFileType = file; fileEncoding = 4; name = spritesheet.xml; path = src/spritesheet.xml; sourceTree = SOURCE_ROOT; };
 		5E5FEACD99320981BA0B1F6B /* blowfish.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = blowfish.h; path = ../../../../../Downloads/of_v0.10.1_osx_release/addons/ofxPoco/libs/openssl/include/openssl/blowfish.h; sourceTree = SOURCE_ROOT; };
 		5ECC10A2D77766821F655FB6 /* whrlpool.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = whrlpool.h; path = ../../../../../Downloads/of_v0.10.1_osx_release/addons/ofxPoco/libs/openssl/include/openssl/whrlpool.h; sourceTree = SOURCE_ROOT; };
 		5ED6F20A70167897A6CEF143 /* asn1.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = asn1.h; path = ../../../../../Downloads/of_v0.10.1_osx_release/addons/ofxPoco/libs/openssl/include/openssl/asn1.h; sourceTree = SOURCE_ROOT; };
@@ -920,8 +914,6 @@
 				90CC9900BE868EEF1A3CD6C1 /* enemy.cpp */,
 				46DCEE51FF9AA52348AF0C0B /* level.hpp */,
 				C42981E365C09748A151A803 /* level.cpp */,
-				5B47026DB368638A55A67535 /* spritesheet.xml */,
-				53525A0127555430DE05796F /* spritesheet.png */,
 				A3F75776239DCF6300EEE592 /* levels.txt */,
 			);
 			path = src;
@@ -1091,8 +1083,6 @@
 				A3F75755239C67AF00EEE592 /* level.cpp in Sources */,
 				A3F75756239C67AF00EEE592 /* block.cpp in Sources */,
 				A3F75757239C67AF00EEE592 /* enemy.cpp in Sources */,
-				A3F75758239C67AF00EEE592 /* spritesheet.xml in Sources */,
-				A3F75759239C67AF00EEE592 /* spritesheet.png in Sources */,
 				A3F7575A239C67AF00EEE592 /* ofxXmlPoco.cpp in Sources */,
 				A3F7575B239C67AF00EEE592 /* ofxTPAnimatedSprite.cpp in Sources */,
 				A3F7575C239C67AF00EEE592 /* ofxTPLoader.cpp in Sources */,
@@ -1118,8 +1108,6 @@
 				E6F8A9E1EE2EC1427B9F457C /* level.cpp in Sources */,
 				684556CF651C68ED7502FB2F /* block.cpp in Sources */,
 				03A7C7A7915456622C905193 /* enemy.cpp in Sources */,
-				5C004656F738821C1CC188DA /* spritesheet.xml in Sources */,
-				B045BB822A3C8252E49703A1 /* spritesheet.png in Sources */,
 				3B66C98F9598AE986FECC30C /* ofxXmlPoco.cpp in Sources */,
 				DFA4BA7429BB16DAE3A14D2A /* ofxTPAnimatedSprite.cpp in Sources */,
 				65FC2AEDC35966DB2D51C59F /* ofxTPLoader.cpp in Sources */,
