@@ -1,4 +1,5 @@
 #include "ofApp.h"
+#include <sstream>
 
 #define LEFT OF_KEY_LEFT
 #define RIGHT OF_KEY_RIGHT
@@ -7,6 +8,7 @@
 
 #define PLAYER_COLOR ofColor::steelBlue
 #define BLOCK_COLOR ofColor::black
+#define OVERLAY_COLOR ofColor(255, 255, 255, 150)
 #define WADDLE_SPEED 10
 #define PORTAL_SPEED 10
 
@@ -17,12 +19,13 @@ void ofApp::setup(){
     
     // load sprites
     
-    sky.load("../../src/sky.png");
-    bigFont.load("../../src/din.ttf", 24);
-    littleFont.load("../../src/din.ttf", 12);
+    intro.load("../../src/resources/intro.png");
+    sky.load("../../src/resources/sky.png");
+    bigFont.load("../../src/resources/din.ttf", 24);
+    littleFont.load("../../src/resources/din.ttf", 12);
     
     spritesheet = ofxTexturePackerPtr(new ofxTexturePacker());
-    spritesheet->load("../../src/spritesheet.xml");
+    spritesheet->load("../../src/resources/spritesheet.xml");
     
     groundTop = spritesheet->getSprite("GroundTop");
     groundBottom = spritesheet->getSprite("GroundBottom");
@@ -75,58 +78,58 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    Level thisLevel = levels[currentLevel];
-    
-    if (player.kaput) {
-        player.moveTo(thisLevel.startingPoint);
-        player.yVel = 0;
-        player.kaput = false;
-    }
-    
-    player.update();
-    player.collideAll(thisLevel.blocks);
-    
-    if (player.atPortal) {
-        if (currentLevel < levels.size() - 1) {
-            currentLevel++;
-        } else {
-            gameFinished = true;
+    if (gameStarted && !gameFinished) {
+        Level thisLevel = levels[currentLevel];
+        
+        if (player.kaput) {
+            player.moveTo(thisLevel.startingPoint);
+            player.yVel = 0;
+            player.kaput = false;
         }
-        player.kaput = true;
-        player.atPortal = false;
-    }
-    
-    if (player.movingRight) {
-        if (playerRightWalk) {
-            playerRightWalk->update();
+        
+        player.update();
+        player.collideAll(thisLevel.blocks);
+        
+        if (player.atPortal) {
+            if (currentLevel < levels.size() - 1) {
+                currentLevel++;
+            } else {
+                gameFinished = true;
+            }
+            player.kaput = true;
+            player.atPortal = false;
         }
-    } else if (player.movingLeft) {
-        if (playerLeftWalk) {
-            playerLeftWalk->update();
+        
+        if (player.movingRight) {
+            if (playerRightWalk) {
+                playerRightWalk->update();
+            }
+        } else if (player.movingLeft) {
+            if (playerLeftWalk) {
+                playerLeftWalk->update();
+            }
         }
-    }
-    
-    if (enemyWalk) {
-        enemyWalk->update();
-    }
-    
-    if (portal) {
-        portal->update();
-    }
-    
-    for (Block* b : thisLevel.blocks) {
-        b->update();
-    }
-    
-    if (ofGetFrameRate() > 1) {
-        timer += 1/ofGetFrameRate();
+        
+        if (enemyWalk) {
+            enemyWalk->update();
+        }
+        
+        if (portal) {
+            portal->update();
+        }
+        
+        for (Block* b : thisLevel.blocks) {
+            b->update();
+        }
+        
+        if (ofGetFrameRate() > 1) {
+            timer += 1 / ofGetFrameRate();
+        }
     }
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    Level thisLevel = levels[currentLevel];
-    
     // draw background
     int bgSize = 4;
     int offset = currentLevel % bgSize;
@@ -137,95 +140,119 @@ void ofApp::draw(){
         }
     }
     
-    // draw blocks
-    for (Block* b : thisLevel.blocks) {
-        BlockType bType = b->getType();
-        bool bTop = b->isTop();
-        ofRectangle bRect = b->getRect();
-        if (bType == GROUND) {
-            if (bTop) {
-                groundTop->draw(bRect.x, bRect.y);
-            } else {
-                groundBottom->draw(bRect.x, bRect.y);
+    if (!gameStarted) {
+        // draw intro thing
+        
+        ofSetColor(OVERLAY_COLOR);
+        ofDrawRectangle(width/8, height/8, 3*width/4, 3*height/4);
+        ofSetColor(ofColor::white);
+        intro.draw(width/8, height/8);
+        
+    } else if (!gameFinished) {
+        Level thisLevel = levels[currentLevel];
+        
+        // draw blocks
+        for (Block* b : thisLevel.blocks) {
+            BlockType bType = b->getType();
+            bool bTop = b->isTop();
+            ofRectangle bRect = b->getRect();
+            if (bType == GROUND) {
+                if (bTop) {
+                    groundTop->draw(bRect.x, bRect.y);
+                } else {
+                    groundBottom->draw(bRect.x, bRect.y);
+                }
+            } else if (bType == DEATH) {
+                if (bTop) {
+                    deathTop->draw(bRect.x - PIXEL_SIZE, bRect.y - PIXEL_SIZE);
+                } else {
+                    deathBottom->draw(bRect.x - PIXEL_SIZE, bRect.y - PIXEL_SIZE);
+                }
+            } else if (bType == ENEMY) {
+                enemyWalk->draw(bRect.x - PIXEL_SIZE, bRect.y - PIXEL_SIZE);
+            } else if (bType == PORTAL) {
+                portal->draw(bRect.x - DEFAULT_BLOCK_WIDTH / 3, bRect.y - DEFAULT_BLOCK_WIDTH / 3);
             }
-        } else if (bType == DEATH) {
-            if (bTop) {
-                deathTop->draw(bRect.x - PIXEL_SIZE, bRect.y - PIXEL_SIZE);
-            } else {
-                deathBottom->draw(bRect.x - PIXEL_SIZE, bRect.y - PIXEL_SIZE);
-            }
-        } else if (bType == ENEMY) {
-            enemyWalk->draw(bRect.x - PIXEL_SIZE, bRect.y - PIXEL_SIZE);
-        } else if (bType == PORTAL) {
-            portal->draw(bRect.x - DEFAULT_BLOCK_WIDTH / 3, bRect.y - DEFAULT_BLOCK_WIDTH / 3);
         }
-    }
-    
-    // draw player
-    float playerX = player.getRect().x;
-    float playerY = player.getRect().y;
-    
-    if (!player.grounded) {
-        if (player.facingRight) {
-            playerRightJump->draw(playerX, playerY);
+        
+        // draw player
+        float playerX = player.getRect().x;
+        float playerY = player.getRect().y;
+        
+        if (!player.grounded) {
+            if (player.facingRight) {
+                playerRightJump->draw(playerX, playerY);
+            } else {
+                playerLeftJump->draw(playerX, playerY);
+            }
+        } else if (player.movingRight) {
+            playerRightWalk->draw(playerX, playerY);
+        } else if (player.movingLeft) {
+            playerLeftWalk->draw(playerX, playerY);
         } else {
-            playerLeftJump->draw(playerX, playerY);
+            if (player.facingRight) {
+                playerRightStand->draw(playerX, playerY);
+            } else {
+                playerLeftStand->draw(playerX, playerY);
+            }
         }
-    } else if (player.movingRight) {
-        playerRightWalk->draw(playerX, playerY);
-    } else if (player.movingLeft) {
-        playerLeftWalk->draw(playerX, playerY);
+        
+        // draw data overlay
+        ofSetColor(OVERLAY_COLOR);
+        ofDrawRectangle(20, 20, 240, 56);
+        
+        ofSetColor(ofColor::black);
+        bigFont.drawString("LEVEL " + std::to_string(currentLevel + 1), 32, 60);
+        
+        stringstream time;
+        time << setprecision(floor(log10(timer)) + 3) << timer;
+        
+        littleFont.drawString("DEATHS: " + std::to_string(player.deaths) + "\nTIME: " + time.str(), 160, 44);
+        
+        ofSetColor(255, 255, 255);
     } else {
-        if (player.facingRight) {
-            playerRightStand->draw(playerX, playerY);
-        } else {
-            playerLeftStand->draw(playerX, playerY);
-        }
+        
     }
-    
-    // draw data overlay
-    ofSetColor(255, 255, 255, 150);
-    ofDrawRectangle(20, 20, 300, 56);
-    
-    ofSetColor(ofColor::black);
-    bigFont.drawString("LEVEL " + std::to_string(currentLevel + 1), 32, 60);
-    littleFont.drawString(("DEATHS: " + std::to_string(player.deaths) + "\nTIME: " + std::to_string(round(timer * 100.0) / 100.0)), 150, 42);
-    
-    ofSetColor(255, 255, 255);
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-    if (key == LEFT) {
-        player.movingLeft = true;
-        player.facingRight = false;
-        player.xVel = -player.walkVel;
-    } else if (key == RIGHT) {
-        player.movingRight = true;
-        player.facingRight = true;
-        player.xVel = player.walkVel;
-    } else if (key == JUMP) {
-        player.jump();
-    } else if (key == RESET) {
-        player.kaput = true;
+    if (!gameStarted) {
+        gameStarted = true;
+    } else if (!gameFinished) {
+        if (key == LEFT) {
+            player.movingLeft = true;
+            player.facingRight = false;
+            player.xVel = -player.walkVel;
+        } else if (key == RIGHT) {
+            player.movingRight = true;
+            player.facingRight = true;
+            player.xVel = player.walkVel;
+        } else if (key == JUMP) {
+            player.jump();
+        } else if (key == RESET) {
+            player.kaput = true;
+        }
     }
 }
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
-    if (key == LEFT) {
-        player.movingLeft = false;
-        if (player.movingRight) {
-            player.xVel = player.walkVel;
-        } else {
-            player.xVel = 0;
-        }
-    } else if (key == RIGHT) {
-        player.movingRight = false;
-        if (player.movingLeft) {
-            player.xVel = -player.walkVel;
-        } else {
-            player.xVel = 0;
+    if (gameStarted && !gameFinished) {
+        if (key == LEFT) {
+            player.movingLeft = false;
+            if (player.movingRight) {
+                player.xVel = player.walkVel;
+            } else {
+                player.xVel = 0;
+            }
+        } else if (key == RIGHT) {
+            player.movingRight = false;
+            if (player.movingLeft) {
+                player.xVel = -player.walkVel;
+            } else {
+                player.xVel = 0;
+            }
         }
     }
 }
@@ -262,7 +289,8 @@ void ofApp::mouseExited(int x, int y){
 
 //--------------------------------------------------------------
 void ofApp::windowResized(int w, int h){
-
+    ofSetWindowShape(DEFAULT_BLOCK_WIDTH * DEFAULT_LEVEL_WIDTH,
+                     DEFAULT_BLOCK_HEIGHT * DEFAULT_LEVEL_HEIGHT);
 }
 
 //--------------------------------------------------------------

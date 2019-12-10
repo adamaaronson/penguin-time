@@ -16,7 +16,7 @@ class ofApp : public ofBaseApp {
     int width = ofGetWidth();
     int height = ofGetHeight();
     
-    bool gameStarted = true;
+    bool gameStarted = false;
     bool gameFinished = false;
 
     public:
@@ -37,9 +37,10 @@ class ofApp : public ofBaseApp {
         void gotMessage(ofMessage msg);
     
     ofImage sky;
+    ofImage intro;
     
-    ofTrueTypeFont bigFont;
     ofTrueTypeFont littleFont;
+    ofTrueTypeFont bigFont;
     
     ofxTexturePackerPtr spritesheet;
     
