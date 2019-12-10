@@ -271,7 +271,8 @@ void ofApp::keyPressed(int key){
             player.xVel = player.walkVel;
         } else if (key == JUMP || key == ALT_JUMP) {
             player.jump();
-        } else if (key == RESET) {
+        } else if (key == RESET && !gameFinished) {
+            player.deaths++;
             player.kaput = true;
         }
     }
