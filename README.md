@@ -8,9 +8,7 @@ Penguin Time is a classic platformer game built in C++ and openFrameworks. It fo
 
 ## Build Instructions
 
-Use Xcode (Mac) or Visual Studio (Windows) to build the project. Ensure that you have the [openFrameworks project generator](https://openframeworks.cc/download/) installed, as well as the [ofxTexturePacker](https://github.com/danoli3/ofxTexturePacker) addon.
-
-Alternatively, Mac users may download the .app file directly from the **releases** tab and double-click the file to run the game.
+You'll need Xcode (Mac) or Visual Studio (Windows) to build the project. Ensure that you have the [openFrameworks project generator](https://openframeworks.cc/download/) installed, as well as the [ofxTexturePacker](https://github.com/danoli3/ofxTexturePacker) addon. Generate an openFrameworks project with this project folder as the base folder, and run the main method in `main.cpp`.
 
 ## Controls
 
